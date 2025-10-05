@@ -372,31 +372,24 @@ const searchIndex = [
         type: "campaign"
     },
     {
-        title: "Pagsusulit",
-        content: "Quiz test assessment knowledge gender-based violence karahasan domestic abuse learning education awareness Philippines women's rights empowerment",
+        title: "Kwentong Survivor",
+        content: "Survivor stories testimonials courage resilience hope inspiration gender-based violence karahasan domestic abuse recovery healing Philippines",
         url: "campaigns.html#campaign4",
         section: "campaign4",
         type: "campaign"
     },
     {
-        title: "Kwentong Survivor",
-        content: "Survivor stories testimonials courage resilience hope inspiration gender-based violence karahasan domestic abuse recovery healing Philippines",
+        title: "Get free professional consultation",
+        content: "Professional help counseling support services crisis intervention domestic violence abuse survivors help hotline counseling therapy Philippines",
         url: "campaigns.html#campaign5",
         section: "campaign5",
         type: "campaign"
     },
     {
-        title: "Get free professionalation",
-        content: "Professional help counseling support services crisis intervention domestic violence abuse survivors help hotline counseling therapy Philippines",
-        url: "campaigns.html#campaign6",
-        section: "campaign6",
-        type: "campaign"
-    },
-    {
         title: "Paano magvolunteer, donate, advocate",
         content: "Volunteer donate advocate support FemiNova organization contribute help survivors gender-based violence karahasan domestic abuse prevention Philippines",
-        url: "campaigns.html#campaign7",
-        section: "campaign7",
+        url: "campaigns.html#campaign6",
+        section: "campaign6",
         type: "campaign"
     },
     {
@@ -758,6 +751,11 @@ document.addEventListener('keypress', function(e) {
     }
 });
 
+// Flip card functionality for Myths vs Facts
+function flipCard(card) {
+    card.classList.toggle('flipped');
+}
+
 // Accordion functionality for campaigns page
 function initAccordion() {
     // Set up accordion animations
@@ -791,19 +789,43 @@ function toggleCampaign(campaignId) {
 function toggleCampaignCard(campaignId) {
     const content = document.getElementById(campaignId);
     const icon = document.getElementById(`${campaignId}-icon`);
-    
+    const textElement = document.getElementById(`${campaignId}-text`);
+
     if (!content || !icon) return;
-    
+
     const isExpanded = content.style.maxHeight !== '0px' && content.style.maxHeight !== '';
-    
+
+    // Close all other accordions first
+    for (let i = 1; i <= 6; i++) {
+        const otherCampaignId = `campaign${i}`;
+        if (otherCampaignId !== campaignId) {
+            const otherContent = document.getElementById(otherCampaignId);
+            const otherIcon = document.getElementById(`${otherCampaignId}-icon`);
+            const otherTextElement = document.getElementById(`${otherCampaignId}-text`);
+            if (otherContent && otherIcon) {
+                otherContent.style.maxHeight = '0';
+                otherIcon.style.transform = 'rotate(0deg)';
+                if (otherTextElement) {
+                    otherTextElement.textContent = 'Click to expand';
+                }
+            }
+        }
+    }
+
     if (isExpanded) {
-        // Collapse
+        // Collapse the clicked accordion
         content.style.maxHeight = '0';
         icon.style.transform = 'rotate(0deg)';
+        if (textElement) {
+            textElement.textContent = 'Click to expand';
+        }
     } else {
-        // Expand
+        // Expand the clicked accordion
         content.style.maxHeight = content.scrollHeight + 'px';
         icon.style.transform = 'rotate(180deg)';
+        if (textElement) {
+            textElement.textContent = 'Click to shrink';
+        }
     }
 }
 
@@ -948,6 +970,7 @@ function showDonationModal() {
     modal.classList.remove('hidden');
     modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
+    initDonationModal();
 }
 
 function showVolunteerModal() {
@@ -976,6 +999,7 @@ function closeModal() {
 // Donation form handlers
 function selectAmount(amount) {
     document.getElementById('customAmount').value = amount;
+    updatePaymentAmounts(amount);
     // Remove selected class from all buttons
     document.querySelectorAll('.amount-btn').forEach(btn => {
         btn.classList.remove('border-pink-600', 'bg-pink-50');
@@ -984,6 +1008,59 @@ function selectAmount(amount) {
     // Add selected class to clicked button
     event.target.classList.remove('border-pink-200');
     event.target.classList.add('border-pink-600', 'bg-pink-50');
+}
+
+function selectPaymentMethod(method) {
+    // Hide all payment forms
+    document.querySelectorAll('.payment-form').forEach(form => {
+        form.classList.add('hidden');
+    });
+
+    // Remove selected class from all payment method buttons
+    document.querySelectorAll('.payment-method-btn').forEach(btn => {
+        btn.classList.remove('border-pink-400', 'bg-pink-50');
+        btn.classList.add('border-gray-200');
+    });
+
+    // Show selected payment form and highlight button
+    document.getElementById(method + '-form').classList.remove('hidden');
+    document.getElementById(method + '-method').classList.remove('border-gray-200');
+    document.getElementById(method + '-method').classList.add('border-pink-400', 'bg-pink-50');
+
+    // Update amounts in payment forms
+    const amount = document.getElementById('customAmount').value || 0;
+    updatePaymentAmounts(amount);
+}
+
+function updatePaymentAmounts(amount) {
+    // Update amounts in all payment method displays
+    const amountElements = ['gcash-amount', 'bank-amount'];
+    amountElements.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.textContent = amount || '0';
+        }
+    });
+}
+
+// Initialize donation modal when shown
+function initDonationModal() {
+    // Add event listener to custom amount input
+    const customAmountInput = document.getElementById('customAmount');
+    if (customAmountInput) {
+        customAmountInput.addEventListener('input', function() {
+            updatePaymentAmounts(this.value);
+        });
+    }
+
+    // Reset payment method selection
+    document.querySelectorAll('.payment-form').forEach(form => {
+        form.classList.add('hidden');
+    });
+    document.querySelectorAll('.payment-method-btn').forEach(btn => {
+        btn.classList.remove('border-pink-400', 'bg-pink-50');
+        btn.classList.add('border-gray-200');
+    });
 }
 
 function handleDonationSubmit(event) {
@@ -1297,3 +1374,268 @@ function initHorizontalScroll() {
     // Also update on window resize
     window.addEventListener('resize', updateButtonVisibility);
 }
+
+// Copy to clipboard functionality for hotline numbers
+function copyToClipboard(text) {
+    // Create a temporary textarea element to copy from
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.left = '-999999px';
+    textarea.style.top = '-999999px';
+    document.body.appendChild(textarea);
+
+    // Select and copy the text
+    textarea.focus();
+    textarea.select();
+
+    try {
+        const successful = document.execCommand('copy');
+        if (successful) {
+            // Show success feedback
+            showCopyFeedback('Phone number copied to clipboard!');
+        } else {
+            // Fallback for older browsers
+            navigator.clipboard.writeText(text).then(() => {
+                showCopyFeedback('Phone number copied to clipboard!');
+            }).catch(() => {
+                showCopyFeedback('Failed to copy phone number');
+            });
+        }
+    } catch (err) {
+        // Fallback for modern browsers
+        navigator.clipboard.writeText(text).then(() => {
+            showCopyFeedback('Phone number copied to clipboard!');
+        }).catch(() => {
+            showCopyFeedback('Failed to copy phone number');
+        });
+    }
+
+    // Clean up
+    document.body.removeChild(textarea);
+}
+
+// Show feedback message for copy action
+function showCopyFeedback(message) {
+    // Remove any existing feedback
+    const existingFeedback = document.querySelector('.copy-feedback');
+    if (existingFeedback) {
+        existingFeedback.remove();
+    }
+
+    // Create feedback element
+    const feedback = document.createElement('div');
+    feedback.className = 'copy-feedback fixed top-4 right-4 bg-teal-600 text-white px-4 py-2 rounded-lg shadow-lg z-50 transition-all duration-300';
+    feedback.textContent = message;
+
+    // Add to page
+    document.body.appendChild(feedback);
+
+    // Animate in
+    setTimeout(() => {
+        feedback.style.transform = 'translateY(0)';
+        feedback.style.opacity = '1';
+    }, 10);
+
+    // Remove after 3 seconds
+    setTimeout(() => {
+        feedback.style.transform = 'translateY(-10px)';
+        feedback.style.opacity = '0';
+        setTimeout(() => {
+            if (feedback.parentNode) {
+                feedback.parentNode.removeChild(feedback);
+            }
+        }, 300);
+    }, 3000);
+}
+
+// Toggle detail sections within campaign accordions
+function toggleDetailSection(sectionId) {
+    const content = document.getElementById(sectionId);
+    const icon = document.getElementById(sectionId.replace('-details', '-icon'));
+
+    if (!content || !icon) return;
+
+    const isExpanded = content.style.maxHeight !== '0px' && content.style.maxHeight !== '';
+
+    if (isExpanded) {
+        // Collapse
+        content.style.maxHeight = '0';
+        icon.style.transform = 'rotate(0deg)';
+
+        // Update parent height after collapse transition
+        setTimeout(() => {
+            updateParentAccordionHeight();
+        }, 350); // Wait for collapse transition to complete
+    } else {
+        // Expand
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+
+        // Update parent height after expand transition
+        setTimeout(() => {
+            updateParentAccordionHeight();
+        }, 350); // Wait for expand transition to complete
+    }
+}
+
+// Helper function to update the parent campaign accordion height
+function updateParentAccordionHeight() {
+    // Find all campaign accordions that are currently expanded
+    for (let i = 1; i <= 6; i++) {
+        const campaignContent = document.getElementById(`campaign${i}`);
+        if (campaignContent && campaignContent.style.maxHeight !== '0px' && campaignContent.style.maxHeight !== '') {
+            // Force a reflow to get accurate scrollHeight
+            campaignContent.offsetHeight;
+            // Recalculate and update the height
+            campaignContent.style.maxHeight = campaignContent.scrollHeight + 'px';
+        }
+    }
+}
+
+/* ===== PAGE TRANSITION AND STORY ANIMATIONS ===== */
+
+// Initialize story page animations
+function initStoryPageAnimations() {
+    // Add page enter animation to body
+    document.body.classList.add('page-enter');
+
+    // Initialize hero animations
+    const heroSection = document.querySelector('.story-hero');
+    if (heroSection) {
+        heroSection.classList.add('story-hero-enter');
+    }
+
+    // Initialize content animations with stagger
+    const contentElements = document.querySelectorAll('.story-content, .story-quote, .story-section');
+    contentElements.forEach((element, index) => {
+        element.classList.add('story-content-enter');
+        element.style.animationDelay = `${0.4 + (index * 0.2)}s`;
+    });
+
+    // Initialize navigation animations
+    const navElements = document.querySelectorAll('.story-nav, .story-navigation');
+    navElements.forEach((element, index) => {
+        element.classList.add('story-nav-enter');
+        element.style.animationDelay = `${1.2 + (index * 0.1)}s`;
+    });
+
+    // Add text reveal animation to main title
+    const mainTitle = document.querySelector('.story-title');
+    if (mainTitle) {
+        mainTitle.classList.add('text-reveal');
+        const titleText = mainTitle.textContent;
+        mainTitle.innerHTML = `<span>${titleText}</span>`;
+    }
+
+    // Add hover effects to story cards
+    const storyCards = document.querySelectorAll('.story-card');
+    storyCards.forEach(card => {
+        card.classList.add('story-card-hover');
+    });
+
+    // Add pulse animation to CTA buttons
+    const ctaButtons = document.querySelectorAll('.cta-button, .story-cta');
+    ctaButtons.forEach(button => {
+        button.classList.add('cta-pulse');
+    });
+}
+
+// Smooth page transition function
+function navigateToStory(storyUrl) {
+    // Create loading overlay
+    const loadingOverlay = document.createElement('div');
+    loadingOverlay.className = 'loading-overlay';
+    loadingOverlay.innerHTML = '<div class="loading-spinner"></div>';
+    document.body.appendChild(loadingOverlay);
+
+    // Show loading overlay
+    setTimeout(() => {
+        loadingOverlay.classList.add('active');
+    }, 10);
+
+    // Add page exit animation
+    document.body.classList.add('page-exit');
+
+    // Navigate after animation
+    setTimeout(() => {
+        window.location.href = storyUrl;
+    }, 500);
+}
+
+// Enhanced scroll animations for story pages
+function initEnhancedScrollAnimations() {
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const target = entry.target;
+
+                // Handle different animation types
+                if (target.classList.contains('story-section')) {
+                    target.classList.add('story-content-enter');
+                } else if (target.classList.contains('story-quote')) {
+                    target.classList.add('story-quote-enter');
+                } else if (target.classList.contains('reveal')) {
+                    target.classList.add('revealed');
+                }
+
+                // Stagger children if it's a container
+                if (target.classList.contains('stagger-children')) {
+                    const children = Array.from(target.children);
+                    children.forEach((child, i) => {
+                        setTimeout(() => {
+                            child.classList.add('story-content-enter');
+                        }, i * 100);
+                    });
+                }
+
+                observer.unobserve(target);
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '0px 0px -10% 0px',
+        threshold: 0.1
+    });
+
+    // Observe story-specific elements
+    setTimeout(() => {
+        const storyElements = document.querySelectorAll('.story-section, .story-quote, .reveal');
+        storyElements.forEach(el => {
+            observer.observe(el);
+        });
+    }, 100);
+}
+
+// Initialize all story page enhancements
+function initStoryPageEnhancements() {
+    // Check if we're on a story page
+    if (window.location.pathname.includes('/stories/') || document.querySelector('.story-hero')) {
+        initStoryPageAnimations();
+        initEnhancedScrollAnimations();
+    }
+
+    // Add smooth navigation to story links
+    const storyLinks = document.querySelectorAll('[onclick*="stories/"]');
+    storyLinks.forEach(link => {
+        const onclickAttr = link.getAttribute('onclick');
+        if (onclickAttr && onclickAttr.includes('window.open')) {
+            const urlMatch = onclickAttr.match(/'([^']*stories[^']*)'/);
+            if (urlMatch) {
+                const storyUrl = urlMatch[1];
+                link.onclick = (e) => {
+                    e.preventDefault();
+                    navigateToStory(storyUrl);
+                };
+            }
+        }
+    });
+}
+
+// Add to DOMContentLoaded initialization
+document.addEventListener('DOMContentLoaded', function() {
+    // ... existing code ...
+    initStoryPageEnhancements();
+});

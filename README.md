@@ -1,186 +1,106 @@
 # FemiNova - Empowering Women's Voices
 
-A modern, responsive campaign website built for women's empowerment and advocacy against gender-based violence.
+## Welcome to FemiNova
 
-**Academic Project** - Developed for the subject **Kasaysayan** (History)
+FemiNova is a dedicated platform supporting women and girls affected by gender-based violence in the Philippines. Our website provides comprehensive information, resources, and community support to help survivors find hope, healing, and justice.
 
-## Overview
+**Academic Project** - Created for the subject **Kasaysayan** (History) to raise awareness about gender-based violence and women's rights.
 
-FemiNova is a comprehensive static website dedicated to supporting women and girls affected by gender-based violence in the Philippines. This project was developed as part of the **Kasaysayan (History)** subject curriculum, combining historical awareness of gender-based violence with modern web development techniques.
+## What We Offer
 
-The website features seven main campaigns and provides resources, support information, and community engagement opportunities to address this critical social issue.
+### 📚 **Educational Campaigns**
+Learn about different forms of gender-based violence and understand your rights:
 
-## Campaigns
+1. **Understanding Violence** - Learn about physical, emotional, and sexual abuse
+2. **Know Your Rights** - Legal protections under Republic Act 9262
+3. **Myths vs Facts** - Common misconceptions about gender-based violence
+4. **Survivor Stories** - Inspiring journeys of courage and resilience
+5. **Professional Support** - Access to counseling, legal aid, and crisis services
+6. **Get Involved** - Ways to volunteer, donate, and advocate for change
 
-FemiNova showcases seven comprehensive campaigns:
+### 💬 **Daily Inspiration**
+- **Daily Affirmations** - Positive messages to uplift and empower
+- **Community Support** - Connect with others who understand
+- **Resource Directory** - Find local support services and hotlines
 
-1. **Ano nga ba ang karahasan?** - Understanding different forms of violence and abuse
-2. **Know your rights** - Legal rights and protections under Republic Act 9262
-3. **Myths vs Facts** - Debunking common misconceptions about gender-based violence
-4. **Pagsusulit** - Knowledge assessment and learning through interactive quizzes
-5. **Kwentong Survivor!** - Inspiring stories of courage, resilience, and hope from survivors
-6. **Get free professionalation** - 24/7 access to crisis support, counseling, and legal assistance
-7. **paano magvolunteer, donate, advocate** - Meaningful ways to support survivors and contribute to ending gender-based violence
+### 🔍 **Easy Navigation**
+- **Smart Search** - Find information quickly across all content
+- **Mobile-Friendly** - Access from any device, anywhere
+- **Accessible Design** - Built with inclusivity in mind
 
-## Tech Stack
+## How to Use FemiNova
 
-- **HTML5** - Semantic markup and structure
-- **Tailwind CSS** - Utility-first styling via CDN
-- **Vanilla JavaScript** - Client-side interactions, search functionality, and API integration
-- **No build system** - Simple, dependency-free development
+### Getting Started
+1. **Visit Our Website** - Open `index.html` in your web browser
+2. **Explore Campaigns** - Browse our six main educational campaigns
+3. **Find Support** - Use our resource directory for immediate help
+4. **Get Inspired** - Read survivor stories and daily affirmations
 
-## Features
+### Finding Information
+- **Use the Search Bar** - Type keywords to find relevant content
+- **Browse by Category** - Navigate through different campaign sections
+- **Read Survivor Stories** - Click on story cards to read inspiring journeys
 
-### 🎨 **Design & User Experience**
-- **Pink and purple themed responsive design** optimized for mobile and desktop
-- **Glassmorphism effects** and gradient backgrounds
-- **Smooth animations** and hover transitions throughout
-- **Mobile-first approach** with collapsible navigation
+### Getting Help
+- **Emergency Support** - Contact local authorities or hotlines immediately
+- **Professional Consultation** - Access 24/7 crisis support services
+- **Legal Resources** - Learn about your rights and available protections
 
-### 🔍 **Advanced Search System**
-- **Comprehensive search** across all website content
-- **Real-time results** with relevance scoring
-- **Elegant modal interface** with highlighted search terms
-- **Cross-page search** functionality
-- **Smart result categorization** (Pages, Sections, Campaigns, Features)
+## Support & Resources
 
-### 💬 **Interactive Features**
-- **Daily affirmations** fetched from external API with local fallback
-- **Dynamic team section** rendered from JavaScript array
-- **Expandable campaign accordions** with smooth animations
-- **Horizontal scrolling campaign previews** on homepage
-- **Modal-based authentication** system (demo functionality)
+### 🆘 **Emergency Contacts**
+- **National VAWC Hotline**: Call emergency services or local police
+- **Women's Crisis Centers**: Available nationwide
+- **Gabriela Women's Party**: Support and advocacy services
 
-### 📱 **Support & Resources**
-- **Emergency help form** for immediate crisis support
-- **Contact forms** with validation
-- **Professional support directory** with 24/7 access information
-- **Legal rights information** and resources
-- **Volunteer and donation opportunities**
+### 📞 **Professional Support Services**
+- **Philippine Commission on Women (PCW)** - VAWC Helpdesk
+- **Department of Social Welfare and Development (DSWD)** - Crisis intervention
+- **Local Women's Shelters** - Safe housing and counseling
 
-### ♿ **Accessibility & Performance**
-- **WCAG compliant** with proper labels and keyboard navigation
-- **Screen reader friendly** markup
-- **Fast loading** with CDN-hosted assets
-- **Progressive enhancement** approach
+### 📚 **Educational Resources**
+- **Republic Act 9262** - Anti-Violence Against Women and Their Children Act
+- **United Nations Women** - Reports and resources on gender-based violence
+- **World Health Organization** - Global information on violence against women
 
-## Quick Start
+## Get Involved
 
-1. **Clone or download** this repository
-2. **Open `index.html`** in any modern web browser
-3. **That's it!** No installation or build process required
+### Ways to Help
+- **Volunteer** - Join community support efforts
+- **Donate** - Support organizations helping survivors
+- **Advocate** - Raise awareness and promote change
+- **Share** - Spread information about gender-based violence prevention
 
-### Optional: Local Development Server
+### Community Engagement
+- **Share Your Story** - Contribute to our growing collection of survivor narratives
+- **Join Support Groups** - Connect with others in similar situations
+- **Participate in Awareness** - Help educate others about gender-based violence
 
-For enhanced local development experience:
+## Our Mission
 
-```bash
-# Python 3
-python -m http.server 8000
+FemiNova exists to:
+- **Educate** - Provide accurate information about gender-based violence
+- **Empower** - Help survivors find their voice and strength
+- **Support** - Connect people with professional help and resources
+- **Advocate** - Work towards ending gender-based violence in the Philippines
 
-# Node.js (requires serve package)
-npx serve .
+## Important Notes
 
-# PHP
-php -S localhost:8000
-```
+### For Survivors
+- **You are not alone** - Many women have walked this path before you
+- **Help is available** - Reach out to professionals who can support you
+- **Your safety comes first** - If you're in immediate danger, call emergency services
 
-Then visit `http://localhost:8000`
+### For Supporters
+- **Education saves lives** - Learning about gender-based violence helps prevent it
+- **Small actions matter** - Every volunteer, donation, and advocate makes a difference
+- **Listen and believe** - Support survivors by believing their experiences
 
-## Project Structure
-
-```
-FemiNova/
-├── index.html                    # Main landing page with hero, about, team, campaigns preview
-├── campaigns.html               # Detailed campaign pages with accordions
-├── Background.png               # Hero section background image
-├── README.md                    # This documentation
-├── assets/
-│   ├── js/
-│   │   └── main.js             # All JavaScript functionality
-│   └── css/
-│       └── scroll-animations.css # Custom scroll animations
-├── img/                         # Campaign visual assets
-│   ├── ano nga ba ang karahasan.png
-│   ├── know your rights.png
-│   ├── Myths vs Facts.png
-│   ├── pagsusulit.png
-│   ├── kwentong survivor.png
-│   ├── R.A 9262.png
-│   ├── emosyonal na karaahasan.png
-│   ├── fisikal na karahasan.png
-│   ├── seksuwal na karahasan.png
-│   └── pisikal na karahasan.png
-└── .github/
-    └── copilot-instructions.md   # AI development guidance
-```
-
-## Customization
-
-### Update Team Members
-
-Edit the `team` array in `assets/js/main.js`:
-
-```javascript
-const team = [
-    'Name|email@feminova.org',
-    'Another Member|another@feminova.org',
-    // Add more members in same format
-];
-```
-
-### Modify Campaigns
-
-Campaign content is defined in `campaigns.html`. Each campaign section includes:
-- Visual imagery from the `img/` folder
-- Detailed descriptions and information
-- Functional buttons for volunteer/donate/advocate actions
-
-### Update Search Index
-
-The search functionality automatically indexes all content. To add new searchable content, simply add it to the HTML pages - the search system will automatically include it.
-
-### Customize Colors
-
-The site uses Tailwind's pink and purple palettes. Key theme classes:
-- `text-pink-600`, `bg-pink-600` - Primary pink accents
-- `from-pink-500 to-purple-600` - Gradient combinations
-- `bg-pink-50`, `text-pink-100` - Light variants
-- `bg-purple-500`, `text-purple-700` - Purple accents
-
-## Browser Support
-
-- **Chrome/Edge** 88+
-- **Firefox** 85+
-- **Safari** 14+
-- **Mobile browsers** (iOS Safari 14+, Chrome Mobile)
-- **Responsive design** works on all screen sizes
-
-## API Dependencies
-
-- **Affirmations API**: `https://www.affirmations.dev/` (with local fallback)
-- **No authentication backends** - all forms are demo-only
-
-## Contributing
-
-1. **Preserve simplicity** - maintain the zero-build architecture
-2. **Test responsiveness** - ensure mobile-first design principles
-3. **Maintain accessibility** - follow WCAG guidelines
-4. **Update documentation** - modify this README for significant changes
-5. **Keep dependencies minimal** - prefer vanilla JavaScript over libraries
-
-## Development Notes
-
-- **No package managers** required - pure HTML/CSS/JS
-- **CDN-hosted Tailwind** for styling
-- **Client-side only** - no server-side processing
-- **Demo forms** - contact and auth forms show alerts (ready for backend integration)
-- **Modular JavaScript** - all functionality in single `main.js` file
-
-## License
-
-© 2025 FemiNova. Academic project for Kasaysayan (History) subject. All rights reserved.
+### Legal Disclaimer
+*This website provides educational information and should not replace professional legal, medical, or psychological advice. For immediate help, contact local authorities or emergency services.*
 
 ---
 
-*Built with ❤️ for women's empowerment and gender equality in the Philippines.*
+**FemiNova** - Because every woman deserves safety, respect, and justice.
+
+*Created with ❤️ for the women of the Philippines*

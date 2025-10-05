@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sarah's Journey - FemiNova Survivor Stories</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/scroll-animations.css">
+    <style>
+        /* Mobile navbar hide/show animation */
+        .mobile-nav {
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-nav-hidden {
+            transform: translateY(-100%);
+        }
+        .mobile-nav-visible {
+            transform: translateY(0);
+        }
+
+        /* Ensure content is not obscured by the fixed top mobile nav */
+        @media (max-width: 767px) {
+            body { padding-top: 56px; } /* leave room for mobile nav */
+            .mobile-nav .container { height: 56px; } /* slightly smaller than h-12 to feel compact */
+            .mobile-menu-panel a { padding-left: 0.5rem; padding-right: 0.5rem; }
+        }
+    </style>
+</head>
+<body class="bg-pink-50 text-gray-800">
+    <!-- Navigation -->
+    <nav class="navbar-elegant sticky top-0 z-50 backdrop-blur-md border-b border-pink-100/50 shadow-sm hidden md:block">
+        <div class="container mx-auto px-4 md:px-6 py-0.5 md:py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <!-- Elegant Logo with Icon -->
+                    <div class="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <a href="../index.html" class="text-xl md:text-2xl font-bold bg-gradient-to-r from-pink-600 to-pink-700 bg-clip-text text-transparent">FemiNova</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../index.html" class="nav-link relative text-gray-700 hover:text-pink-600 font-medium transition-all duration-300 py-1.5 px-2.5 rounded-lg hover:bg-pink-50/50 group">
+                        <span class="relative z-10">Home</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-pink-600 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+                    <a href="../index.html#about" class="nav-link relative text-gray-700 hover:text-pink-600 font-medium transition-all duration-300 py-1.5 px-2.5 rounded-lg hover:bg-pink-50/50 group">
+                        <span class="relative z-10">About</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-pink-600 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+                    <a href="../index.html#team" class="nav-link relative text-gray-700 hover:text-pink-600 font-medium transition-all duration-300 py-1.5 px-2.5 rounded-lg hover:bg-pink-50/50 group">
+                        <span class="relative z-10">Team</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-pink-600 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+                    <a href="../campaigns.html" class="nav-link relative text-pink-600 font-semibold transition-all duration-300 py-1.5 px-2.5 rounded-lg bg-pink-50/50 group">
+                        <span class="relative z-10">Mga Adhilain</span>
+                        <div class="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-pink-600"></div>
+                    </a>
+                    <a href="../index.html#contact" class="nav-link relative text-gray-700 hover:text-pink-600 font-medium transition-all duration-300 py-1.5 px-2.5 rounded-lg hover:bg-pink-50/50 group">
+                        <span class="relative z-10">Contact</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-pink-600 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+
+                    <!-- Elegant Login Button -->
+                    <div class="h-8 w-px bg-gradient-to-b from-transparent via-pink-200 to-transparent"></div>
+                    <button onclick="showLogin()" class="elegant-btn bg-gradient-to-r from-pink-500 to-pink-600 text-white px-6 py-2.5 rounded-xl hover:from-pink-600 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl font-medium">
+                        <span class="flex items-center space-x-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                            </svg>
+                            <span>Login</span>
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Mobile navigation is provided by the fixed bottom bar (mobile-only) -->
+            </div>
+    </nav>
+
+    <!-- Mobile Navigation (visible on small screens only) -->
+    <nav class="mobile-nav fixed top-0 left-0 right-0 z-50 md:hidden bg-white/95 border-b border-pink-100/50 shadow-sm">
+        <div class="container mx-auto px-4 flex items-center justify-between h-12">
+            <div class="flex items-center space-x-3">
+                <div class="w-7 h-7 bg-gradient-to-br from-pink-500 to-pink-600 rounded-md flex items-center justify-center shadow">
+                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </div>
+                <a href="../index.html" class="text-sm font-semibold text-gray-800">FemiNova</a>
+            </div>
+
+            <div class="flex items-center">
+                <button id="mobileMenuBtn" aria-label="Open menu" class="p-2 rounded-md text-pink-600 hover:bg-pink-50 focus:outline-none focus:ring-2 focus:ring-pink-300">
+                    <svg id="mobileMenuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile menu panel (collapsed by default) -->
+        <div id="mobileMenuPanel" class="mobile-menu-panel max-h-0 overflow-hidden transition-all duration-300 bg-white border-b border-pink-50">
+            <div class="flex flex-col px-4 py-2 space-y-1">
+                <a href="../index.html" onclick="closeMobileMenu()" class="block text-gray-700 py-2 px-2 rounded hover:bg-pink-50 transition-all duration-300 hover:text-pink-600">Home</a>
+                <a href="../index.html#about" onclick="closeMobileMenu()" class="block text-gray-700 py-2 px-2 rounded hover:bg-pink-50 transition-all duration-300 hover:text-pink-600">About</a>
+                <a href="../index.html#team" onclick="closeMobileMenu()" class="block text-gray-700 py-2 px-2 rounded hover:bg-pink-50 transition-all duration-300 hover:text-pink-600">Team</a>
+                <a href="../campaigns.html" onclick="closeMobileMenu()" class="block text-pink-600 py-2 px-2 rounded bg-pink-50 transition-all duration-300">Mga Adhilain</a>
+                <a href="../index.html#contact" onclick="closeMobileMenu()" class="block text-gray-700 py-2 px-2 rounded hover:bg-pink-50 transition-all duration-300 hover:text-pink-600">Contact</a>
+                <button onclick="showLogin(); closeMobileMenu()" class="mt-2 bg-gradient-to-r from-pink-500 to-pink-600 text-white px-4 py-2 rounded-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl font-medium">
+                    <span class="flex items-center justify-center space-x-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                        </svg>
+                        <span>Login</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="story-hero relative bg-gradient-to-br from-pink-600 via-pink-700 to-pink-800 text-white py-16 pt-20 md:pt-16 overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-10 left-10 w-32 h-32 bg-white rounded-full"></div>
+            <div class="absolute top-20 right-20 w-24 h-24 bg-white rounded-full"></div>
+            <div class="absolute bottom-20 left-1/4 w-16 h-16 bg-white rounded-full"></div>
+            <div class="absolute bottom-10 right-10 w-20 h-20 bg-white rounded-full"></div>
+        </div>
+
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="max-w-4xl mx-auto">
+                <!-- Decorative Icon -->
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full mb-6">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                    </svg>
+                </div>
+
+                <h1 class="story-title text-4xl md:text-5xl font-bold mb-4">
+                    Sarah's Journey
+                </h1>
+
+                <div class="w-16 h-1 bg-pink-300 mx-auto mb-6 rounded-full"></div>
+
+                <p class="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-pink-100">
+                    A single mother's triumph over domestic abuse, earthquakes, and COVID-19
+                </p>
+
+                <div class="mt-8">
+                    <a href="../campaigns.html" class="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full hover:bg-white/30 transition-all duration-300">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        Back to Stories
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Content -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <!-- Story Summary -->
+                <div class="story-section bg-gradient-to-r from-pink-50 to-purple-50 rounded-2xl p-8 mb-8 border border-pink-100">
+                    <h2 class="text-2xl font-bold text-pink-700 mb-4">Story Summary</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        Sarah, a single mother in Mindanao, Philippines, endured years of domestic abuse from her partner. When a series of earthquakes struck in 2019, she faced additional trauma and uncertainty. During the COVID-19 pandemic, she received crucial support through UNFPA's "Cash for Protection" initiative, which helped her start a small business and achieve financial independence for herself and her two young children.
+                    </p>
+                </div>
+
+                <!-- Full Story -->
+                <div class="story-section bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">Sarah's Full Story</h2>
+
+                    <div class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                        <p class="mb-6">
+                            The rainy season has come again, and for Sarah, a single mother in her late 20s from Tulunan, it only brings back bitter memories. Keeping an eye to her little store and her two young children, aged three and one, Sarah vividly remembers the pains that she went through because of her partner.
+                        </p>
+
+                        <blockquote class="story-quote border-l-4 border-pink-400 pl-6 italic text-pink-700 my-6">
+                            "This rain reminds me of those years of verbal abuse from my partner and how he eventually left me and the two kids," she said, holding back tears.
+                        </blockquote>
+
+                        <p class="mb-6">
+                            It was when she was filled with anxiety after being shaken by a series of earthquakes in October 2019, Sarah with her two sons in tow decided to visit her partner, who was working away from home as part of the citizen auxiliary force of the Armed Forces of the Philippines.
+                        </p>
+
+                        <p class="mb-6">
+                            "The children were missing their father so much that I thought I would pay him a surprise visit." Sarah was not at all prepared for his reaction when he said, "Leave now. I am now with another woman." Sarah and the two boys left hurriedly, in disbelief.
+                        </p>
+
+                        <blockquote class="story-quote border-l-4 border-pink-400 pl-6 italic text-pink-700 my-6">
+                            "I thought of taking my own life at that very moment," Sarah recalled. "But I watched my children. They are so young and innocent. They would still need a mother around."
+                        </blockquote>
+
+                        <p class="mb-6">
+                            The idea of a failed relationship and uncertainty as to how to raise her little sons by herself alone, distressed Sarah giving her sleepless nights. However, she did not file a complaint against her partner and instead settled for monthly financial assistance. Sarah and her young sons immediately moved to her mother's house, and with a little capital that she had saved, Sarah opened a small business and put all her energies in it.
+                        </p>
+
+                        <p class="mb-6">
+                            "The income is however barely enough to put three meals on the table," she recalled. Sarah is one of those 26% of Filipino ever-married women aged 15-49, who have experienced emotional, physical, or sexual violence committed by their husband or partner.
+                        </p>
+
+                        <h3 class="text-2xl font-semibold text-pink-700 mt-8 mb-4">The Turning Point: Cash for Protection</h3>
+
+                        <p class="mb-6">
+                            Soon after the series of powerful earthquakes jolted North Cotabato Province including the Tulunan town, UNFPA in the Philippines, with support from the UN Central Emergency Response Fund (CERF), started working with Mindanao Organization for Social and Economic Progress Incorporated (MOSEP) and other local partners, to address the physical, emotional, and socio-economic consequences of GBV in evacuation centers established in the earthquake-affected communities.
+                        </p>
+
+                        <p class="mb-6">
+                            Sarah was among the 49 women who benefited from UNFPA's new initiative implemented with MOSEP entitled the "Cash for Protection", to protect women from gender-based violence and provide a social safety net for the survivors. Each target woman receives a cash aid worth PHP 10,000 (approximately USD 200) from the "Cash for Protection" initiative.
+                        </p>
+
+                        <blockquote class="story-quote border-l-4 border-pink-400 pl-6 italic text-pink-700 my-6">
+                            "Many women in abusive relationships do not leave their violent partners, because of financial dependence. They are not confident if they can survive and support their children by themselves alone. Because of natural disasters and now with COVID, these women are even more unsure of their potential to become independent."
+                        </blockquote>
+
+                        <p class="mb-6">
+                            Sarah was at a town hall where MOSEP supervised the distribution of 'cash for protection' to GBV survivors like her, as the government eased the two-month-long community quarantine against the coronavirus pandemic to allow some economic activities to resume in the communities.
+                        </p>
+
+                        <blockquote class="story-quote border-l-4 border-pink-400 pl-6 italic text-pink-700 my-6">
+                            "I will use some of the money as additional capital for my small business," she shared with a smile back on her face. "It would be a lie if I say I don't remember the painful memories. But at least, the six years of an abusive relationship that I had to endure is gone, it's over," Sarah said. "I will spend the remaining money for the needs of my sons, and also save a little for our future."
+                        </blockquote>
+                    </div>
+                </div>
+
+                <!-- Impact & Lessons -->
+                <div class="story-section bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-8 mt-8 border border-green-100">
+                    <h2 class="text-2xl font-bold text-green-700 mb-4">Key Lessons & Impact</h2>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span><strong>Financial independence</strong> is crucial for leaving abusive relationships</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>External crises like natural disasters can <strong>exacerbate domestic violence</strong></span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span><strong>Community support and cash assistance</strong> programs can provide the safety net needed for survivors</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 text-green-500 mt-1 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                            </svg>
+                            <span>Children are the <strong>greatest motivation</strong> for survivors to keep fighting</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Citation -->
+                <div class="story-section bg-gray-50 rounded-2xl p-6 mt-8 border border-gray-200">
+                    <h3 class="text-lg font-semibold text-gray-800 mb-3">Source Citation</h3>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <p><strong>Title:</strong> Single mother in Mindanao survives domestic abuse, earthquakes, and COVID-19</p>
+                        <p><strong>Author:</strong> UNFPA Philippines</p>
+                        <p><strong>Publication Date:</strong> June 30, 2020</p>
+                        <p><strong>Source:</strong> UNFPA Philippines News</p>
+                        <p><strong>URL:</strong> <a href="https://philippines.unfpa.org/en/news/single-mother-mindanao-survives-domestic-abuse-earthquakes-and-covid-19" class="text-pink-600 hover:underline" target="_blank">philippines.unfpa.org</a></p>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="story-nav-enter flex justify-between items-center mt-8">
+                    <a href="../campaigns.html" class="flex items-center px-6 py-3 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors duration-300">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                        </svg>
+                        Back to Campaigns
+                    </a>
+
+                    <div class="flex space-x-4">
+                        <a href="jenny-story.html" class="px-6 py-3 bg-pink-100 hover:bg-pink-200 text-pink-700 rounded-lg transition-colors duration-300">
+                            Next Story →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <div class="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center">
+                    <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <span class="text-xl font-bold">FemiNova</span>
+            </div>
+            <p class="text-gray-400 text-sm">Empowering women through awareness, support, and action against gender-based violence.</p>
+            <div class="mt-6 pt-6 border-t border-gray-700">
+                <p class="text-gray-500 text-xs">© 2025 FemiNova. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

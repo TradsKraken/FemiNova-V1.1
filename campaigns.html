@@ -24,6 +24,41 @@
             .mobile-nav .container { height: 56px; } /* slightly smaller than h-12 to feel compact */
             .mobile-menu-panel a { padding-left: 0.5rem; padding-right: 0.5rem; }
         }
+
+        /* Flip Card Styles */
+        .flip-card {
+            perspective: 1000px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
     </style>
 </head>
 <body class="bg-pink-50 text-gray-800">
@@ -224,7 +259,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-3 sm:justify-end">
-                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
+                                <span id="campaign1-text" class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
                                 <div class="transition-transform duration-300" id="campaign1-icon">
                                     <svg class="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -288,6 +323,23 @@
                                                     <img src="img/seksuwal na karahasan.png" alt="Seksuwal na Karahasan" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg shadow-sm border border-pink-200">
                                                 </div>
                                             </div>
+                                            
+                                            <div class="flex flex-col sm:flex-row sm:items-start gap-4 p-4 bg-white/50 rounded-lg border border-pink-100">
+                                                <div class="flex-1">
+                                                    <div class="flex items-center gap-3 mb-2">
+                                                        <span class="flex-shrink-0 w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
+                                                        <h4 class="font-semibold text-gray-800">Ekonomiko na Karahasan</h4>
+                                                    </div>
+                                                    <p class="text-gray-700 text-sm sm:text-base leading-relaxed">Kung saan ginagamit ng isang tao ang pera, ari-arian, o oportunidad sa kabuhayan upang kontrolin o saktan ang iba. Ayon sa Republic Act No. 9262, kabilang dito ang pagpigil sa biktima na magtrabaho, pagkakait ng pinansyal na suporta, o pag-aari ng mga bagay na karapatan din ng biktima. Ang ganitong uri ng karahasan ay naglilimita sa kakayahan ng isang tao na maging malaya at makamit ang seguridad sa kabuhayan. (Republic Act No. 9262, 2004; Philippine Commission on Women, n.d.)</p>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <div class="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-br from-green-100 to-green-200 rounded-lg shadow-sm border border-green-300 flex items-center justify-center">
+                                                        <svg class="w-8 h-8 sm:w-10 sm:h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         
                                         <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
@@ -339,7 +391,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-3 sm:justify-end">
-                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
+                                <span id="campaign2-text" class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
                                 <div class="transition-transform duration-300" id="campaign2-icon">
                                     <svg class="w-5 h-5 sm:w-6 sm:h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -357,13 +409,79 @@
                         <div id="campaign2" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
                             <div class="pt-4 sm:pt-6 border-t border-blue-100">
                                 <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-blue-100">
-                                    <div class="flex flex-col lg:flex-row lg:items-center gap-6">
-                                        <div class="flex-1">
+                                    <div class="space-y-6">
+                                        <!-- Title -->
+                                        <div class="text-center">
+                                            <h4 class="text-xl sm:text-2xl font-bold text-blue-800 mb-4">Know Your Rights</h4>
                                             <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
-                                                •Ang mga kababaihan sa Pilipinas ay may karapatan na maprotektahan laban sa anumang uri ng karahasan—pisikal, sekswal, emosyonal, o ekonomiko—ayon sa Republic Act 9262. Maaari silang magsampa ng kaso at humingi ng Protection Order mula sa korte upang maging ligtas. Mayroon din silang karapatan sa libreng tulong legal, medikal, at psychosocial mula sa mga ahensya ng gobyerno, bilang pagkilala sa kanilang dignidad at pantay na pagtingin sa lipunan.
+                                                Narito ang mga karapatan ng kababaihan laban sa pang-aabuso, ayon sa Republic Act No. 9262 o ang "Anti-Violence Against Women and Their Children Act of 2004."
                                             </p>
                                         </div>
-                                        <div class="flex-shrink-0 flex justify-center lg:justify-end">
+
+                                        <!-- Rights Section -->
+                                        <div class="bg-white rounded-lg p-4 sm:p-6 border border-blue-200">
+                                            <h5 class="text-lg sm:text-xl font-semibold text-blue-800 mb-4 text-center">Mga Karapatan ng Kababaihan Laban sa Pang-aabuso</h5>
+
+                                            <div class="space-y-4">
+                                                <!-- Right 1 -->
+                                                <div class="flex flex-col sm:flex-row gap-3 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                                                    <div class="flex-shrink-0">
+                                                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <h6 class="font-semibold text-gray-800 mb-1">Kapatang Maging Ligtas sa Anumang Uri ng Karahasan</h6>
+                                                        <p class="text-sm sm:text-base text-gray-700">May karapatan ang mga kababaihan na hindi saktan, takutin, o abusuhin — pisikal man, sekswal, emosyonal, o pinansyal. Ibig sabihin, walang sinuman, kahit asawa o kasintahan, ang may karapatang manakit o manakot (Republic Act No. 9262, 2004).</p>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Right 2 -->
+                                                <div class="flex flex-col sm:flex-row gap-3 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                                                    <div class="flex-shrink-0">
+                                                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <h6 class="font-semibold text-gray-800 mb-1">Kapatang Humingi ng Proteksyon sa Batas</h6>
+                                                        <p class="text-sm sm:text-base text-gray-700">Maaaring humingi ng Protection Order mula sa barangay o korte upang mapigilan ang patuloy na pang-aabuso. Kasama rito ang Barangay Protection Order (BPO), Temporary Protection Order (TPO), at Permanent Protection Order (PPO) (Philippine Commission on Women [PCW], n.d.).</p>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Right 3 -->
+                                                <div class="flex flex-col sm:flex-row gap-3 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                                                    <div class="flex-shrink-0">
+                                                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <h6 class="font-semibold text-gray-800 mb-1">Kapatang Tumira sa Ligtas na Lugar</h6>
+                                                        <p class="text-sm sm:text-base text-gray-700">Kung nasa panganib, maaaring pansamantalang lumipat sa mas ligtas na lugar o shelter na nagbibigay ng proteksyon at tulong. May mga women's crisis centers na tumutulong sa mga biktima ng karahasan (PCW, n.d.).</p>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Right 4 -->
+                                                <div class="flex flex-col sm:flex-row gap-3 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                                                    <div class="flex-shrink-0">
+                                                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">4</span>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <h6 class="font-semibold text-gray-800 mb-1">Kapatang Magreklamo at Humingi ng Hustisya</h6>
+                                                        <p class="text-sm sm:text-base text-gray-700">Ang mga biktima ng karahasan ay may karapatang magsampa ng kaso laban sa nanakit o umabuso. May karapatan din silang magkaroon ng abogado at tulong mula sa gobyerno o NGO (Republic Act No. 9262, 2004).</p>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Right 5 -->
+                                                <div class="flex flex-col sm:flex-row gap-3 p-3 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+                                                    <div class="flex-shrink-0">
+                                                        <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center text-sm font-bold">5</span>
+                                                    </div>
+                                                    <div class="flex-1">
+                                                        <h6 class="font-semibold text-gray-800 mb-1">Kapatang Tumanggap ng Suporta at Serbisyo</h6>
+                                                        <p class="text-sm sm:text-base text-gray-700">Maaaring makatanggap ng counseling, tulong pinansyal, at legal assistance mula sa mga ahensya tulad ng DSWD, PCW, at LGU (PCW, n.d.).</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Image -->
+                                        <div class="flex justify-center">
                                             <div class="relative">
                                                 <div class="absolute -inset-1 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-lg blur opacity-25"></div>
                                                 <img src="img/know your rights.png" alt="Know your rights" class="relative w-48 h-32 sm:w-56 sm:h-36 object-cover rounded-lg shadow-md border border-white">
@@ -393,7 +511,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-3 sm:justify-end">
-                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
+                                <span id="campaign3-text" class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
                                 <div class="transition-transform duration-300" id="campaign3-icon">
                                     <svg class="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -411,70 +529,169 @@
                         <div id="campaign3" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
                             <div class="pt-4 sm:pt-6 border-t border-purple-100">
                                 <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-purple-100">
-                                    <div class="flex flex-col lg:flex-row lg:items-center gap-6">
-                                        <div class="flex-1">
-                                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
-                                                •Maraming maling paniniwala o myths ang umiikot tungkol sa abuso, gaya ng paniniwalang kasalanan ng biktima o normal lang ito sa isang relasyon. Sa katotohanan (facts), ang abuso ay hindi kailanman tama at walang sinuman ang may karapatang manakit. Ang pagwawasto sa mga maling akala ay nakatutulong upang mas maintindihan ang tunay na epekto ng abuso at mas maprotektahan ang mga biktima.
-                                            </p>
-                                        </div>
-                                        <div class="flex-shrink-0 flex justify-center lg:justify-end">
-                                            <div class="relative">
-                                                <div class="absolute -inset-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg blur opacity-25"></div>
-                                                <img src="img/Myths vs Facts.png" alt="Myths vs Facts" class="relative w-48 h-32 sm:w-56 sm:h-36 object-cover rounded-lg shadow-md border border-white">
+                                    <!-- Myth vs Facts Interactive Cards -->
+                                    <div class="mb-8">
+                                        <h4 class="text-2xl font-bold text-center text-purple-700 mb-6">Click on each myth to reveal the truth</h4>
+                                        <p class="text-center text-gray-600 mb-8">Tap or click the cards below to flip them and discover the facts</p>
+                                        
+                                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                                            <!-- Myth Card 1 -->
+                                            <div class="flip-card h-56 sm:h-64" onclick="flipCard(this); event.stopPropagation();">
+                                                <div class="flip-card-inner">
+                                                    <div class="flip-card-front">
+                                                        <div class="bg-gradient-to-br from-red-100 to-red-200 p-4 sm:p-6 rounded-xl h-full flex flex-col justify-center items-center text-center border-2 border-red-300 shadow-lg cursor-pointer">
+                                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                                                                <span class="text-white font-bold text-lg sm:text-xl">✗</span>
+                                                            </div>
+                                                            <h5 class="font-bold text-red-700 text-base sm:text-lg mb-2">MYTH</h5>
+                                                            <p class="text-red-800 text-xs sm:text-sm leading-relaxed">Kasalanan ng babae kapag siya ay sinaktan o inabuso.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flip-card-back">
+                                                        <div class="bg-gradient-to-br from-green-100 to-green-200 p-4 sm:p-6 rounded-xl h-full flex flex-col justify-center items-center text-center border-2 border-green-300 shadow-lg">
+                                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                                                                <span class="text-white font-bold text-lg sm:text-xl">✓</span>
+                                                            </div>
+                                                            <h5 class="font-bold text-green-700 text-base sm:text-lg mb-2">FACT</h5>
+                                                            <p class="text-green-800 text-xs sm:text-sm leading-relaxed">Walang sinuman ang may karapatang manakit. Ang pananakit ay desisyon ng umaabuso, hindi ng biktima. (PCW, n.d.)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Myth Card 2 -->
+                                            <div class="flip-card h-56 sm:h-64" onclick="flipCard(this); event.stopPropagation();">
+                                                <div class="flip-card-inner">
+                                                    <div class="flip-card-front">
+                                                        <div class="bg-gradient-to-br from-red-100 to-red-200 p-4 sm:p-6 rounded-xl h-full flex flex-col justify-center items-center text-center border-2 border-red-300 shadow-lg cursor-pointer">
+                                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                                                                <span class="text-white font-bold text-lg sm:text-xl">✗</span>
+                                                            </div>
+                                                            <h5 class="font-bold text-red-700 text-base sm:text-lg mb-2">MYTH</h5>
+                                                            <p class="text-red-800 text-xs sm:text-sm leading-relaxed">Normal lang ang pananakit sa relasyon; bahagi ito ng pagmamahal.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flip-card-back">
+                                                        <div class="bg-gradient-to-br from-green-100 to-green-200 p-4 sm:p-6 rounded-xl h-full flex flex-col justify-center items-center text-center border-2 border-green-300 shadow-lg">
+                                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                                                                <span class="text-white font-bold text-lg sm:text-xl">✓</span>
+                                                            </div>
+                                                            <h5 class="font-bold text-green-700 text-base sm:text-lg mb-2">FACT</h5>
+                                                            <p class="text-green-800 text-xs sm:text-sm leading-relaxed">Ang pananakit ay hindi kailanman tanda ng pag-ibig. Ang tunay na pagmamahal ay may respeto at malasakit, hindi kontrol at takot. (WHO, 2023)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Myth Card 3 -->
+                                            <div class="flip-card h-56 sm:h-64" onclick="flipCard(this); event.stopPropagation();">
+                                                <div class="flip-card-inner">
+                                                    <div class="flip-card-front">
+                                                        <div class="bg-gradient-to-br from-red-100 to-red-200 p-4 sm:p-6 rounded-xl h-full flex flex-col justify-center items-center text-center border-2 border-red-300 shadow-lg cursor-pointer">
+                                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                                                                <span class="text-white font-bold text-lg sm:text-xl">✗</span>
+                                                            </div>
+                                                            <h5 class="font-bold text-red-700 text-base sm:text-lg mb-2">MYTH</h5>
+                                                            <p class="text-red-800 text-xs sm:text-sm leading-relaxed">Dapat manahimik na lang ang biktima para hindi lumala.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flip-card-back">
+                                                        <div class="bg-gradient-to-br from-green-100 to-green-200 p-4 sm:p-6 rounded-xl h-full flex flex-col justify-center items-center text-center border-2 border-green-300 shadow-lg">
+                                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                                                                <span class="text-white font-bold text-lg sm:text-xl">✓</span>
+                                                            </div>
+                                                            <h5 class="font-bold text-green-700 text-base sm:text-lg mb-2">FACT</h5>
+                                                            <p class="text-green-800 text-xs sm:text-sm leading-relaxed">Ang pananahimik ay nagdudulot ng patuloy na pang-aabuso. Mas mainam na magsumbong sa mga awtoridad o humingi ng tulong. (PCW, n.d.)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Myth Card 4 -->
+                                            <div class="flip-card h-56 sm:h-64" onclick="flipCard(this); event.stopPropagation();">
+                                                <div class="flip-card-inner">
+                                                    <div class="flip-card-front">
+                                                        <div class="bg-gradient-to-br from-red-100 to-red-200 p-4 sm:p-6 rounded-xl h-full flex flex-col justify-center items-center text-center border-2 border-red-300 shadow-lg cursor-pointer">
+                                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                                                                <span class="text-white font-bold text-lg sm:text-xl">✗</span>
+                                                            </div>
+                                                            <h5 class="font-bold text-red-700 text-base sm:text-lg mb-2">MYTH</h5>
+                                                            <p class="text-red-800 text-xs sm:text-sm leading-relaxed">Ang pang-aabuso ay pisikal lang, tulad ng pananakit o pananampal.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flip-card-back">
+                                                        <div class="bg-gradient-to-br from-green-100 to-green-200 p-4 sm:p-6 rounded-xl h-full flex flex-col justify-center items-center text-center border-2 border-green-300 shadow-lg">
+                                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                                                                <span class="text-white font-bold text-lg sm:text-xl">✓</span>
+                                                            </div>
+                                                            <h5 class="font-bold text-green-700 text-base sm:text-lg mb-2">FACT</h5>
+                                                            <p class="text-green-800 text-xs sm:text-sm leading-relaxed">May iba pang anyo ng pang-aabuso tulad ng emosyonal, sekswal, at pinansyal na pananakit. (Republic Act No. 9262, 2004)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Myth Card 5 -->
+                                            <div class="flip-card h-56 sm:h-64" onclick="flipCard(this); event.stopPropagation();">
+                                                <div class="flip-card-inner">
+                                                    <div class="flip-card-front">
+                                                        <div class="bg-gradient-to-br from-red-100 to-red-200 p-4 sm:p-6 rounded-xl h-full flex flex-col justify-center items-center text-center border-2 border-red-300 shadow-lg cursor-pointer">
+                                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                                                                <span class="text-white font-bold text-lg sm:text-xl">✗</span>
+                                                            </div>
+                                                            <h5 class="font-bold text-red-700 text-base sm:text-lg mb-2">MYTH</h5>
+                                                            <p class="text-red-800 text-xs sm:text-sm leading-relaxed">Hindi nagaganap ang pang-aabuso sa mga mayayaman o edukadong tao.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flip-card-back">
+                                                        <div class="bg-gradient-to-br from-green-100 to-green-200 p-4 sm:p-6 rounded-xl h-full flex flex-col justify-center items-center text-center border-2 border-green-300 shadow-lg">
+                                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                                                                <span class="text-white font-bold text-lg sm:text-xl">✓</span>
+                                                            </div>
+                                                            <h5 class="font-bold text-green-700 text-base sm:text-lg mb-2">FACT</h5>
+                                                            <p class="text-green-800 text-xs sm:text-sm leading-relaxed">Ang pang-aabuso ay maaaring mangyari sa kahit anong antas ng lipunan mayaman man, mahirap, edukado o hindi. (WHO, 2023)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Myth Card 6 -->
+                                            <div class="flip-card h-56 sm:h-64" onclick="flipCard(this); event.stopPropagation();">
+                                                <div class="flip-card-inner">
+                                                    <div class="flip-card-front">
+                                                        <div class="bg-gradient-to-br from-red-100 to-red-200 p-4 sm:p-6 rounded-xl h-full flex flex-col justify-center items-center text-center border-2 border-red-300 shadow-lg cursor-pointer">
+                                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-red-500 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                                                                <span class="text-white font-bold text-lg sm:text-xl">✗</span>
+                                                            </div>
+                                                            <h5 class="font-bold text-red-700 text-base sm:text-lg mb-2">MYTH</h5>
+                                                            <p class="text-red-800 text-xs sm:text-sm leading-relaxed">Kung hindi umaalis ang biktima, ibig sabihin ay gusto niya ang sitwasyon.</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flip-card-back">
+                                                        <div class="bg-gradient-to-br from-green-100 to-green-200 p-4 sm:p-6 rounded-xl h-full flex flex-col justify-center items-center text-center border-2 border-green-300 shadow-lg">
+                                                            <div class="w-8 h-8 sm:w-12 sm:h-12 bg-green-500 rounded-full flex items-center justify-center mb-3 sm:mb-4">
+                                                                <span class="text-white font-bold text-lg sm:text-xl">✓</span>
+                                                            </div>
+                                                            <h5 class="font-bold text-green-700 text-base sm:text-lg mb-2">FACT</h5>
+                                                            <p class="text-green-800 text-xs sm:text-sm leading-relaxed">Madalas natatakot, walang mapuntahan, o umaasa pa ang biktima na magbabago ang umaabuso. Hindi ito nangangahulugang gusto niya ang abuso. (PCW, n.d.)</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Pagsusulit -->
-                <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign4')">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-green-600 to-teal-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                    <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-green-50">
-                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 sm:mb-8">
-                            <div class="flex items-center mb-4 sm:mb-0">
-                                <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl sm:rounded-2xl flex items-center justify-center mr-4 sm:mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
-                                    <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 group-hover:text-green-600 transition-colors duration-300">Pagsusulit</h3>
-                                    <div class="w-12 h-1 sm:w-14 md:w-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full"></div>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-3 sm:justify-end">
-                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
-                                <div class="transition-transform duration-300" id="campaign4-icon">
-                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-green-100 mb-4">
-                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
-                                Test your knowledge about gender-based violence and learn through interactive assessment.
-                            </p>
-                        </div>
-                        
-                        <!-- Expandable Content -->
-                        <div id="campaign4" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
-                            <div class="pt-4 sm:pt-6 border-t border-green-100">
-                                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-green-100">
-                                    <div class="flex flex-col lg:flex-row lg:items-center gap-6">
-                                        <div class="flex-1">
-                                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
-                                                •Ang pagsusulit ay isang paraan upang masukat ang ating kaalaman tungkol sa karahasan at karapatan. Layunin nito na mapalawak ang ating pag-unawa at maitaguyod ang kamalayan sa isyung panlipunan.
-                                            </p>
-                                        </div>
-                                        <div class="flex-shrink-0 flex justify-center lg:justify-end">
-                                            <div class="relative">
-                                                <div class="absolute -inset-1 bg-gradient-to-r from-green-400 to-teal-400 rounded-lg blur opacity-25"></div>
-                                                <img src="img/pagsusulit.png" alt="Pagsusulit" class="relative w-48 h-32 sm:w-56 sm:h-36 object-cover rounded-lg shadow-md border border-white">
+                                        <!-- Educational Note -->
+                                        <div class="mt-8 bg-gradient-to-r from-purple-100 to-pink-100 rounded-xl p-6 border border-purple-200">
+                                            <div class="flex items-start space-x-4">
+                                                <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                                    <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                    </svg>
+                                                </div>
+                                                <div>
+                                                    <h6 class="font-bold text-purple-700 mb-2">Bakit Mahalaga ang Pagwawasto ng mga Myth?</h6>
+                                                    <p class="text-purple-800 text-sm leading-relaxed">Ang pagwawasto sa mga maling paniniwala ay nakatutulong upang mas maintindihan ang tunay na epekto ng abuso at mas maprotektahan ang mga biktima. Kapag alam natin ang katotohanan, mas madaling makakita ng mga palatandaan ng abuso at mas magiging handa tayong tumulong sa mga nangangailangan.</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -485,7 +702,7 @@
                 </div>
 
                 <!-- Kwentong Survivor! -->
-                <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign5')">
+                <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign4')">
                     <div class="absolute -inset-1 bg-gradient-to-r from-orange-600 to-red-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
                     <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-orange-50">
                         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 sm:mb-8">
@@ -501,8 +718,8 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-3 sm:justify-end">
-                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
-                                <div class="transition-transform duration-300" id="campaign5-icon">
+                                <span id="campaign4-text" class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
+                                <div class="transition-transform duration-300" id="campaign4-icon">
                                     <svg class="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
@@ -516,20 +733,95 @@
                         </div>
                         
                         <!-- Expandable Content -->
-                        <div id="campaign5" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
+                        <div id="campaign4" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
                             <div class="pt-4 sm:pt-6 border-t border-orange-100">
                                 <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-orange-100">
-                                    <div class="flex flex-col lg:flex-row lg:items-center gap-6">
-                                        <div class="flex-1">
-                                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
-                                                •Ang mga kwento ng survivor ay nagpapakita ng tapang at pag-asa sa kabila ng karahasan. Ipinapakita nila na posible ang pagbabago at pagbangon sa tulong ng komunidad. Ang kanilang karanasan ay nagsisilbing inspirasyon sa iba upang lumaban at huwag sumuko.
+                                    <div class="space-y-6">
+                                        <div class="text-center">
+                                            <h4 class="text-xl font-semibold text-orange-800 mb-4">Mga Kuwento ng Lakas at Pagbangon</h4>
+                                            <p class="text-gray-700 leading-relaxed mb-6">
+                                                Basahin ang mga tunay na kuwento ng mga babaeng nanalo sa karahasan. Ang kanilang mga karanasan ay nagbibigay ng inspirasyon at pag-asa sa iba.
                                             </p>
                                         </div>
-                                        <div class="flex-shrink-0 flex justify-center lg:justify-end">
-                                            <div class="relative">
-                                                <div class="absolute -inset-1 bg-gradient-to-r from-orange-400 to-red-400 rounded-lg blur opacity-25"></div>
-                                                <img src="img/kwentong survivor.png" alt="Kwentong Survivor" class="relative w-48 h-32 sm:w-56 sm:h-36 object-cover rounded-lg shadow-md border border-white">
+
+                                        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                                            <!-- Story 1 -->
+                                            <div class="bg-white rounded-lg p-4 shadow-md border border-orange-200 hover:shadow-lg transition-shadow duration-300">
+                                                <div class="w-full h-32 bg-gradient-to-br from-orange-100 to-pink-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
+                                                    <img src="https://philippines.unfpa.org/sites/default/files/sarah_1.jpg" alt="Sarah's Journey - Single mother in Mindanao" class="w-full h-full object-cover rounded-lg">
+                                                </div>
+                                                <h5 class="font-semibold text-orange-700 mb-2">Sarah's Journey</h5>
+                                                <p class="text-sm text-gray-600 mb-3">Single mother in Mindanao survives domestic abuse, earthquakes, and COVID-19</p>
+                                                <button onclick="navigateToStory('stories/sarah-story.html')" class="text-orange-600 hover:text-orange-800 text-sm font-medium underline">
+                                                    Basahin ang kuwento →
+                                                </button>
                                             </div>
+
+                                            <!-- Story 2 -->
+                                            <div class="bg-white rounded-lg p-4 shadow-md border border-orange-200 hover:shadow-lg transition-shadow duration-300">
+                                                <div class="w-full h-32 bg-gradient-to-br from-orange-100 to-pink-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
+                                                    <img src="https://i0.wp.com/publichealthinsider.com/wp-content/uploads/2025/07/Withstanding-the-Heat-Layout-in-English-2.jpg?resize=400%2C300&ssl=1" alt="Jenny's Strength - Domestic violence survivor" class="w-full h-full object-cover rounded-lg">
+                                                </div>
+                                                <h5 class="font-semibold text-orange-700 mb-2">Jenny's Strength</h5>
+                                                <p class="text-sm text-gray-600 mb-3">Withstanding the heat: A domestic violence survivor's story</p>
+                                                <button onclick="navigateToStory('stories/jenny-story.html')" class="text-orange-600 hover:text-orange-800 text-sm font-medium underline">
+                                                    Basahin ang kuwento →
+                                                </button>
+                                            </div>
+
+                                            <!-- Story 3 -->
+                                            <div class="bg-white rounded-lg p-4 shadow-md border border-orange-200 hover:shadow-lg transition-shadow duration-300">
+                                                <div class="w-full h-32 bg-gradient-to-br from-orange-100 to-pink-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
+                                                    <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400&h=200&fit=crop&crop=center" alt="Megan's Triumph - From abuse to independence" class="w-full h-full object-cover rounded-lg">
+                                                </div>
+                                                <h5 class="font-semibold text-orange-700 mb-2">Megan's Triumph</h5>
+                                                <p class="text-sm text-gray-600 mb-3">From abuse to independence: Megan's story of courage</p>
+                                                <button onclick="navigateToStory('stories/megan-story.html')" class="text-orange-600 hover:text-orange-800 text-sm font-medium underline">
+                                                    Basahin ang kuwento →
+                                                </button>
+                                            </div>
+
+                                            <!-- Story 4 -->
+                                            <div class="bg-white rounded-lg p-4 shadow-md border border-orange-200 hover:shadow-lg transition-shadow duration-300">
+                                                <div class="w-full h-32 bg-gradient-to-br from-orange-100 to-pink-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
+                                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=200&fit=crop&crop=center" alt="Esmeralda's Resilience - From victim to survivor" class="w-full h-full object-cover rounded-lg">
+                                                </div>
+                                                <h5 class="font-semibold text-orange-700 mb-2">Esmeralda's Resilience</h5>
+                                                <p class="text-sm text-gray-600 mb-3">From victim to survivor: Esmeralda's journey of healing</p>
+                                                <button onclick="navigateToStory('stories/esmeralda-story.html')" class="text-orange-600 hover:text-orange-800 text-sm font-medium underline">
+                                                    Basahin ang kuwento →
+                                                </button>
+                                            </div>
+
+                                            <!-- Story 5 -->
+                                            <div class="bg-white rounded-lg p-4 shadow-md border border-orange-200 hover:shadow-lg transition-shadow duration-300">
+                                                <div class="w-full h-32 bg-gradient-to-br from-orange-100 to-pink-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
+                                                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&h=200&fit=crop&crop=center" alt="Rini's Rebirth - Learning new skills and rebuilding life" class="w-full h-full object-cover rounded-lg">
+                                                </div>
+                                                <h5 class="font-semibold text-orange-700 mb-2">Rini's Rebirth</h5>
+                                                <p class="text-sm text-gray-600 mb-3">A survivor learns new skills and rebuilds her life</p>
+                                                <button onclick="navigateToStory('stories/rini-story.html')" class="text-orange-600 hover:text-orange-800 text-sm font-medium underline">
+                                                    Basahin ang kuwento →
+                                                </button>
+                                            </div>
+
+                                            <!-- Story 6 -->
+                                            <div class="bg-white rounded-lg p-4 shadow-md border border-orange-200 hover:shadow-lg transition-shadow duration-300">
+                                                <div class="w-full h-32 bg-gradient-to-br from-orange-100 to-pink-100 rounded-lg mb-3 flex items-center justify-center overflow-hidden">
+                                                    <img src="https://dapdc.org/wp-content/uploads/bb-plugin/cache/rosie-fraser-rTwhmFSoXC8-unsplash-scaled-1-300x200-circle-ee535468c0f3f9cc91234377c5eaff72-60ec3126b0346.jpg" alt="Tanya's Freedom - Breaking free from family abuse" class="w-full h-full object-cover rounded-lg">
+                                                </div>
+                                                <h5 class="font-semibold text-orange-700 mb-2">Tanya's Freedom</h5>
+                                                <p class="text-sm text-gray-600 mb-3">Breaking free from family abuse: Tanya's story</p>
+                                                <button onclick="navigateToStory('stories/tanya-story.html')" class="text-orange-600 hover:text-orange-800 text-sm font-medium underline">
+                                                    Basahin ang kuwento →
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-6 p-4 bg-orange-100 rounded-lg border border-orange-200">
+                                            <p class="text-orange-800 text-sm">
+                                                <strong>Paalala:</strong> Kung ikaw o ang isang kilala mo ay nangangailangan ng tulong, tumawag sa aming 24/7 hotline o bisitahin ang aming resources section.
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -538,8 +830,8 @@
                     </div>
                 </div>
 
-                <!-- Get free professionalation -->
-                <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign6')">
+                <!-- Get free professional consultation -->
+                <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign5')">
                     <div class="absolute -inset-1 bg-gradient-to-r from-teal-600 to-cyan-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
                     <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-teal-50">
                         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 sm:mb-8">
@@ -550,13 +842,13 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 group-hover:text-teal-600 transition-colors duration-300">Get free professionalation</h3>
+                                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 group-hover:text-teal-600 transition-colors duration-300">Get free professional consultation</h3>
                                     <div class="w-12 h-1 sm:w-14 md:w-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full"></div>
                                 </div>
                             </div>
                             <div class="flex items-center space-x-3 sm:justify-end">
-                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
-                                <div class="transition-transform duration-300" id="campaign6-icon">
+                                <span id="campaign5-text" class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
+                                <div class="transition-transform duration-300" id="campaign5-icon">
                                     <svg class="w-5 h-5 sm:w-6 sm:h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
@@ -570,7 +862,7 @@
                         </div>
                         
                         <!-- Expandable Content -->
-                        <div id="campaign6" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
+                        <div id="campaign5" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
                             <div class="pt-4 sm:pt-6 border-t border-teal-100">
                                 <div class="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-teal-100">
                                     <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-6">
@@ -579,22 +871,54 @@
                                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                         <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg border border-teal-200">
                                             <h4 class="text-lg sm:text-xl font-semibold text-teal-700 mb-4">Hotline Numbers</h4>
-                                            <ul class="space-y-3 text-gray-700 text-sm sm:text-base">
-                                                <li class="flex items-center">
-                                                    <span class="w-2 h-2 bg-teal-500 rounded-full mr-3"></span>
-                                                    Philippine Commission on Women (PCW): 8735-1654
+                                            <ul class="space-y-4 text-gray-700 text-sm sm:text-base">
+                                                <li class="flex items-start">
+                                                    <div class="flex-shrink-0 mr-3 mt-1">
+                                                        <img src="img/philippine commission on women.png" alt="PCW Logo" class="w-8 h-8 sm:w-10 sm:h-10 object-contain rounded">
+                                                    </div>
+                                                    <div>
+                                                        <span class="font-medium text-teal-700">Philippine Commission on Women (PCW)</span><br>
+                                                        <button onclick="copyToClipboard('8735-1654')" class="text-teal-600 hover:text-teal-800 font-medium hover:underline cursor-pointer transition-colors">
+                                                            8735-1654
+                                                        </button>
+                                                    </div>
                                                 </li>
-                                                <li class="flex items-center">
-                                                    <span class="w-2 h-2 bg-teal-500 rounded-full mr-3"></span>
-                                                    PNP Women and Children Protection Center: (02) 8532-6690
+                                                <li class="flex items-start">
+                                                    <div class="flex-shrink-0 mr-3 mt-1">
+                                                        <img src="img/women and children protection center.png" alt="PNP WCPD Logo" class="w-8 h-8 sm:w-10 sm:h-10 object-contain rounded">
+                                                    </div>
+                                                    <div>
+                                                        <span class="font-medium text-teal-700">PNP Women and Children Protection Center</span><br>
+                                                        <button onclick="copyToClipboard('(02) 8532-6690')" class="text-teal-600 hover:text-teal-800 font-medium hover:underline cursor-pointer transition-colors">
+                                                            (02) 8532-6690
+                                                        </button>
+                                                    </div>
                                                 </li>
-                                                <li class="flex items-center">
-                                                    <span class="w-2 h-2 bg-teal-500 rounded-full mr-3"></span>
-                                                    DSWD Crisis Intervention Unit: (02) 8931-8101
+                                                <li class="flex items-start">
+                                                    <div class="flex-shrink-0 mr-3 mt-1">
+                                                        <div class="w-8 h-8 sm:w-10 sm:h-10 bg-teal-100 rounded flex items-center justify-center">
+                                                            <svg class="w-4 h-4 sm:w-5 sm:h-5 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <span class="font-medium text-teal-700">DSWD Crisis Intervention Unit</span><br>
+                                                        <button onclick="copyToClipboard('(02) 8931-8101')" class="text-teal-600 hover:text-teal-800 font-medium hover:underline cursor-pointer transition-colors">
+                                                            (02) 8931-8101
+                                                        </button>
+                                                    </div>
                                                 </li>
-                                                <li class="flex items-center">
-                                                    <span class="w-2 h-2 bg-teal-500 rounded-full mr-3"></span>
-                                                    0917-802-2224 (Inabangang VAWC Hotline)
+                                                <li class="flex items-start">
+                                                    <div class="flex-shrink-0 mr-3 mt-1">
+                                                        <img src="img/Inabangang VAWC Hotline.png" alt="Inabangang VAWC Hotline Logo" class="w-8 h-8 sm:w-10 sm:h-10 object-contain rounded">
+                                                    </div>
+                                                    <div>
+                                                        <span class="font-medium text-teal-700">Inabangang VAWC Hotline</span><br>
+                                                        <button onclick="copyToClipboard('0917-802-2224')" class="text-teal-600 hover:text-teal-800 font-medium hover:underline cursor-pointer transition-colors">
+                                                            0917-802-2224
+                                                        </button>
+                                                    </div>
                                                 </li>
                                             </ul>
                                         </div>
@@ -618,7 +942,7 @@
                 </div>
 
                 <!-- paano magvolunteer, donate, advocate -->
-                <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign7')">
+                <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign6')">
                     <div class="absolute -inset-1 bg-gradient-to-r from-pink-600 to-rose-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
                     <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-pink-50">
                         <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 sm:mb-8">
@@ -634,8 +958,8 @@
                                 </div>
                             </div>
                             <div class="flex items-center space-x-3 sm:justify-end">
-                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
-                                <div class="transition-transform duration-300" id="campaign7-icon">
+                                <span id="campaign6-text" class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
+                                <div class="transition-transform duration-300" id="campaign6-icon">
                                     <svg class="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
@@ -649,39 +973,101 @@
                         </div>
                         
                         <!-- Expandable Content -->
-                        <div id="campaign7" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
+                        <div id="campaign6" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
                             <div class="pt-4 sm:pt-6 border-t border-pink-100">
                                 <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-pink-100">
                                     <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-6">
                                         Ang paglaban sa karahasan ay hindi lang tungkulin ng gobyerno. Bilang indibidwal, maaari kang maging bahagi ng solusyon.
                                     </p>
-                                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+
+                                    <!-- Detailed Sections -->
+                                    <div class="space-y-4">
+                                        <!-- Mag-Volunteer Section -->
                                         <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg border border-pink-200">
-                                            <h4 class="text-lg sm:text-xl font-semibold text-pink-700 mb-4">Volunteer</h4>
-                                            <p class="text-gray-700 text-sm sm:text-base mb-4">
-                                                Sumali sa aming volunteer program at tulungan ang mga survivors sa kanilang pagbangon.
-                                            </p>
-                                            <button onclick="handleVolunteer()" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                                                Volunteer Now
-                                            </button>
+                                            <div class="flex items-center justify-between cursor-pointer" onclick="toggleDetailSection('volunteer-details'); event.stopPropagation();">
+                                                <h4 class="text-lg sm:text-xl font-semibold text-pink-700">Mag-Volunteer</h4>
+                                                <div class="transition-transform duration-300" id="volunteer-icon">
+                                                    <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div id="volunteer-details" class="mt-4 overflow-hidden transition-all duration-300 max-h-0">
+                                                <div class="border-t border-pink-100 pt-4">
+                                                    <ol class="list-decimal list-inside space-y-2 text-gray-700 text-sm sm:text-base mb-4">
+                                                        <li>Sumali sa mga community outreach at seminars tungkol sa women's rights</li>
+                                                        <li>Tumulong bilang peer supporter sa mga awareness campaigns.</li>
+                                                        <li>Gumamit ng skills mo (hal. sa design, writing, social media, or event organizing) para palawakin ang adbokasiya.</li>
+                                                    </ol>
+                                                    <button onclick="handleVolunteer(); event.stopPropagation();" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                                                        Volunteer Now
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
+
+                                        <!-- Mag-Donate Section -->
                                         <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg border border-pink-200">
-                                            <h4 class="text-lg sm:text-xl font-semibold text-pink-700 mb-4">Donate</h4>
-                                            <p class="text-gray-700 text-sm sm:text-base mb-4">
-                                                Ang iyong donasyon ay tutulong sa aming mga programa at serbisyo para sa mga survivors.
-                                            </p>
-                                            <button onclick="handleDonation()" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                                                Donate Now
-                                            </button>
+                                            <div class="flex items-center justify-between cursor-pointer" onclick="toggleDetailSection('donate-details'); event.stopPropagation();">
+                                                <h4 class="text-lg sm:text-xl font-semibold text-pink-700">Mag-Donate</h4>
+                                                <div class="transition-transform duration-300" id="donate-icon">
+                                                    <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div id="donate-details" class="mt-4 overflow-hidden transition-all duration-300 max-h-0">
+                                                <div class="border-t border-pink-100 pt-4">
+                                                    <p class="text-gray-700 text-sm sm:text-base mb-4">
+                                                        Kahit maliit, malaking tulong! Ang iyong donasyon ay:
+                                                    </p>
+                                                    <ul class="list-disc list-inside space-y-1 text-gray-700 text-sm sm:text-base mb-4">
+                                                        <li>Nagbibigay ng libreng counseling at legal aid sa mga survivors.</li>
+                                                        <li>Nagpapalakas sa mga shelter at safe spaces para sa mga kababaihan at bata.</li>
+                                                        <li>Sumusuporta sa production ng learning materials at awareness events.</li>
+                                                    </ul>
+                                                    <div class="bg-pink-50 border border-pink-200 rounded-lg p-4 mb-4">
+                                                        <p class="text-pink-800 text-sm sm:text-base font-medium mb-2">
+                                                            Maari kang mag donate sa organisasyon na DAWN (Development Action for Women Network, Inc.)
+                                                        </p>
+                                                        <p class="text-pink-700 text-sm">
+                                                            <strong>Bank details para sa Peso donation:</strong><br>
+                                                            BPI – Account Name: Development Action for Women Network, Inc., Account Number: 4981-0014-14<br>
+                                                            <a href="https://dawnphil.com" target="_blank" class="text-pink-600 hover:text-pink-800 underline">dawnphil.com</a>
+                                                        </p>
+                                                    </div>
+                                                    <button onclick="handleDonation(); event.stopPropagation();" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                                                        Donate Now
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg border border-pink-200 sm:col-span-2 lg:col-span-1">
-                                            <h4 class="text-lg sm:text-xl font-semibold text-pink-700 mb-4">Advocate</h4>
-                                            <p class="text-gray-700 text-sm sm:text-base mb-4">
-                                                Gamitin ang iyong boses para sa pagbabago. Ibahagi ang aming mensahe sa social media.
-                                            </p>
-                                            <button onclick="handleShare()" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                                                Share Now
-                                            </button>
+
+                                        <!-- Maging Advocate Section -->
+                                        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg border border-pink-200">
+                                            <div class="flex items-center justify-between cursor-pointer" onclick="toggleDetailSection('advocate-details'); event.stopPropagation();">
+                                                <h4 class="text-lg sm:text-xl font-semibold text-pink-700">Maging Advocate</h4>
+                                                <div class="transition-transform duration-300" id="advocate-icon">
+                                                    <svg class="w-5 h-5 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div id="advocate-details" class="mt-4 overflow-hidden transition-all duration-300 max-h-0">
+                                                <div class="border-t border-pink-100 pt-4">
+                                                    <p class="text-gray-700 text-sm sm:text-base mb-3">
+                                                        Hindi lang pera o oras ang kailangan, ang boses mo ay mahalaga.
+                                                    </p>
+                                                    <ul class="list-disc list-inside space-y-1 text-gray-700 text-sm sm:text-base mb-4">
+                                                        <li>I-share ang campaign sa social media.</li>
+                                                        <li>Gumawa ng art, blogs, o videos para magbigay awareness.</li>
+                                                        <li>Makipag-usap sa pamilya at kaibigan tungkol sa women's rights at respeto sa kababaihan.</li>
+                                                    </ul>
+                                                    <button onclick="handleShare(); event.stopPropagation();" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                                                        Share Now
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -782,7 +1168,7 @@
 
     <!-- Donation Modal -->
     <div id="donationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 modal-overlay">
-        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto modal-content">
+        <div class="bg-white rounded-2xl p-8 max-w-lg w-full mx-4 max-h-[90vh] overflow-y-auto modal-content">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="text-2xl font-bold text-pink-600">Make a Donation</h3>
                 <button onclick="closeModal()" class="close-btn text-gray-500 hover:text-gray-700 p-2">
@@ -801,6 +1187,122 @@
                     </div>
                     <input type="number" id="customAmount" placeholder="Enter custom amount" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300">
                 </div>
+
+                <!-- Payment Method Selection -->
+                <div class="form-field">
+                    <label class="block text-sm font-medium text-gray-700 mb-3">Payment Method</label>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button type="button" onclick="selectPaymentMethod('card')" id="card-method" class="payment-method-btn border-2 border-gray-200 bg-white p-4 rounded-lg hover:border-pink-400 transition-all duration-300 text-center">
+                            <div class="flex flex-col items-center space-y-2">
+                                <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                                </svg>
+                                <span class="text-sm font-medium text-gray-700">Credit Card</span>
+                            </div>
+                        </button>
+                        <button type="button" onclick="selectPaymentMethod('gcash')" id="gcash-method" class="payment-method-btn border-2 border-gray-200 bg-white p-4 rounded-lg hover:border-pink-400 transition-all duration-300 text-center">
+                            <div class="flex flex-col items-center space-y-2">
+                                <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center">
+                                    <span class="text-white font-bold text-xs">GC</span>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">GCash</span>
+                            </div>
+                        </button>
+                        <button type="button" onclick="selectPaymentMethod('paypal')" id="paypal-method" class="payment-method-btn border-2 border-gray-200 bg-white p-4 rounded-lg hover:border-pink-400 transition-all duration-300 text-center">
+                            <div class="flex flex-col items-center space-y-2">
+                                <div class="w-8 h-8 bg-blue-600 rounded flex items-center justify-center">
+                                    <span class="text-white font-bold text-xs">PP</span>
+                                </div>
+                                <span class="text-sm font-medium text-gray-700">PayPal</span>
+                            </div>
+                        </button>
+                        <button type="button" onclick="selectPaymentMethod('bank')" id="bank-method" class="payment-method-btn border-2 border-gray-200 bg-white p-4 rounded-lg hover:border-pink-400 transition-all duration-300 text-center">
+                            <div class="flex flex-col items-center space-y-2">
+                                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                </svg>
+                                <span class="text-sm font-medium text-gray-700">Bank Transfer</span>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Payment Method Forms -->
+                <div id="card-form" class="payment-form hidden space-y-4">
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-gray-800 mb-3">Credit Card Details</h4>
+                        <div class="space-y-3">
+                            <input type="text" placeholder="Card Number" class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                            <div class="grid grid-cols-2 gap-3">
+                                <input type="text" placeholder="MM/YY" class="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                                <input type="text" placeholder="CVV" class="border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                            </div>
+                            <input type="text" placeholder="Cardholder Name" class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-pink-500 focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="gcash-form" class="payment-form hidden space-y-4">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-blue-800 mb-3">GCash Payment</h4>
+                        <div class="text-center space-y-3">
+                            <div class="bg-white p-4 rounded-lg border-2 border-dashed border-blue-300">
+                                <div class="text-2xl font-bold text-blue-600 mb-2">₱<span id="gcash-amount">0</span></div>
+                                <p class="text-sm text-gray-600">Scan QR Code or Pay with GCash</p>
+                                <div class="w-24 h-24 bg-gray-200 mx-auto mt-3 rounded-lg flex items-center justify-center">
+                                    <svg class="w-12 h-12 text-gray-400" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <input type="text" placeholder="GCash Reference Number" class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="paypal-form" class="payment-form hidden space-y-4">
+                    <div class="bg-blue-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-blue-800 mb-3">PayPal Payment</h4>
+                        <div class="text-center space-y-3">
+                            <button type="button" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition font-medium">
+                                <span class="flex items-center justify-center space-x-2">
+                                    <span>Pay with PayPal</span>
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.622 1.562 1.035.992 1.449 2.467 1.149 4.162a6.02 6.02 0 0 1-2.306 4.233c1.618.464 2.541 1.509 2.541 3.075 0 2.405-2.107 4.518-6.158 4.518H9.196a.676.676 0 0 1-.672-.747l.79-4.917a.676.676 0 0 1 .672-.603h2.585c1.621 0 2.42-.725 2.42-1.775 0-.935-.704-1.52-2.207-1.52H8.37a.676.676 0 0 1-.672-.603L6.566 3.21A.676.676 0 0 1 7.23 2.52h8.953c2.689 0 4.688.775 5.679 2.278 1.596 2.413 1.246 5.926-.556 7.711-.811.881-2.041 1.365-3.851 1.365h-.573a.676.676 0 0 1-.672-.603l-.79-4.917a.676.676 0 0 1 .672-.747h3.328c1.062 0 1.775.509 1.775 1.286 0 .725-.647 1.17-1.672 1.17H12.81a.676.676 0 0 1-.672-.603L11.15 6.72a.676.676 0 0 1 .672-.747h4.43c2.042 0 3.44.543 4.196 1.618.811 1.149.811 2.733 0 4.233-.811 1.17-2.278 1.826-4.485 1.826h-2.84a.676.676 0 0 1-.672-.603l-.79-4.917a.676.676 0 0 1 .672-.747h4.278c.935 0 1.52.343 1.52 1.004 0 .509-.392.811-1.149.811H15.23a.676.676 0 0 1-.672-.603l-.79-4.917a.676.676 0 0 1 .672-.747h4.43c1.596 0 2.733.509 3.328 1.454.647.968.509 2.341-.343 3.254-.811.811-2.096 1.246-3.851 1.246h-2.84a.676.676 0 0 1-.672-.603l-.79-4.917a.676.676 0 0 1 .672-.747h4.278c.647 0 1.004.28 1.004.811 0 .392-.28.647-.811.647H17.75a.676.676 0 0 1-.672-.603l-.79-4.917a.676.676 0 0 1 .672-.747h4.278c.392 0 .647.168.647.56 0 .28-.168.392-.56.392H19.27a.676.676 0 0 1-.672-.603l-.79-4.917a.676.676 0 0 1 .672-.747h3.328c.28 0 .504.056.504.336 0 .168-.056.28-.336.28H20.79a.676.676 0 0 1-.672-.603l-.79-4.917a.676.676 0 0 1 .672-.747h2.662c.168 0 .28.056.28.224 0 .112-.056.168-.224.168H22.31a.676.676 0 0 1-.672-.603l-.79-4.917a.676.676 0 0 1 .672-.747h1.738c.112 0 .168.056.168.168 0 .056-.056.112-.168.112H23.03a.676.676 0 0 1-.672-.603l-.79-4.917a.676.676 0 0 1 .672-.747h.952c.056 0 .112.028.112.084 0 .028-.028.056-.084.056z"/>
+                                    </svg>
+                                </span>
+                            </button>
+                            <p class="text-xs text-gray-500">You'll be redirected to PayPal to complete your payment</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="bank-form" class="payment-form hidden space-y-4">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-medium text-green-800 mb-3">Bank Transfer Details</h4>
+                        <div class="bg-white p-4 rounded border space-y-3">
+                            <div class="flex justify-between">
+                                <span class="text-sm text-gray-600">Bank:</span>
+                                <span class="text-sm font-medium">BPI (Bank of the Philippine Islands)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm text-gray-600">Account Name:</span>
+                                <span class="text-sm font-medium">Development Action for Women Network, Inc.</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm text-gray-600">Account Number:</span>
+                                <span class="text-sm font-medium font-mono">4981-0014-14</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-sm text-gray-600">Amount:</span>
+                                <span class="text-sm font-medium text-green-600">₱<span id="bank-amount">0</span></span>
+                            </div>
+                        </div>
+                        <input type="text" placeholder="Reference/Transaction Number" class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        <p class="text-xs text-gray-600">Please include your reference number when submitting</p>
+                    </div>
+                </div>
+
                 <div class="form-field">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
                     <input type="text" id="donorName" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300">
