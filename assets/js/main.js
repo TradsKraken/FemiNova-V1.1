@@ -150,18 +150,34 @@ function renderTeam() {
     const teamContainer = document.getElementById('teamContainer');
     if (!teamContainer) return;
 
+    // Profile picture mapping
+    const profileImages = {
+        'Abanggan, Eljann R.': 'Eljann.jpg',
+        'Cagna-an, Aian Rey B.': 'Aian Rey.jpg',
+        'Marquiso, Rean Alexa B.': 'Rean.jpg',
+        'Moniset, Rj Angelo M.': 'RJ Angelo.jpg',
+        'Nianga, Reinna Flor P.': 'Reinna.jpg',
+        'Pilar, Kent Dave R.': 'Kent Dave.jpg',
+        'Resma, Kurt Dave B.': 'Kurt.jfif',
+        'Wasquin, Christine Mae A.': 'Christine.jpg'
+    };
+
     teamContainer.innerHTML = team.map(member => {
         const [name, email] = member.split('|');
+        const profileImage = profileImages[name];
 
         return `
-            <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow reveal">
+            <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 reveal team-card">
                 <div class="text-center">
-                    <div class="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-gray-400 mx-auto mb-4">
-                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-800 mb-2">${name}</h3>
+                    ${profileImage ?
+                        `<img src="img/${profileImage}" alt="${name}" class="w-20 h-20 rounded-full object-cover mx-auto mb-4 border-2 border-pink-100 hover:border-pink-300 transition-all duration-300 cursor-pointer team-profile-pic" data-image="img/${profileImage}" data-name="${name}">` :
+                        `<div class="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-gray-400 mx-auto mb-4 hover:bg-gray-300 transition-all duration-300">
+                            <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                            </svg>
+                        </div>`
+                    }
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2 hover:text-pink-600 transition-colors duration-300">${name}</h3>
                     <a href="mailto:${email}" class="text-pink-600 hover:text-pink-800 transition-colors text-sm">
                         ${email}
                     </a>
@@ -169,9 +185,59 @@ function renderTeam() {
             </div>
         `;
     }).join('');
+
+    // Add click event listeners for profile pictures
+    initTeamProfileClick();
 }
 
-// Scroll reveal using IntersectionObserver
+// Team profile picture click functionality
+function initTeamProfileClick() {
+    const profilePics = document.querySelectorAll('.team-profile-pic');
+    profilePics.forEach(pic => {
+        pic.addEventListener('click', function() {
+            const imageSrc = this.getAttribute('data-image');
+            const name = this.getAttribute('data-name');
+            showTeamProfileModal(imageSrc, name);
+        });
+    });
+}
+
+// Show expanded profile picture modal
+function showTeamProfileModal(imageSrc, name) {
+    // Create modal overlay
+    const modal = document.createElement('div');
+    modal.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4 modal-overlay';
+    modal.innerHTML = `
+        <div class="relative max-w-md max-h-full">
+            <img src="${imageSrc}" alt="${name}" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl transition-transform duration-300 hover:scale-105">
+            <button class="absolute top-2 right-2 bg-white bg-opacity-90 hover:bg-opacity-100 text-gray-800 rounded-full w-8 h-8 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-90" onclick="this.closest('.fixed').remove()">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+            <div class="absolute bottom-2 left-2 bg-white bg-opacity-90 px-3 py-1 rounded-lg">
+                <p class="text-sm font-semibold text-gray-800">${name}</p>
+            </div>
+        </div>
+    `;
+
+    // Add click outside to close
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.remove();
+        }
+    });
+
+    // Add escape key to close
+    document.addEventListener('keydown', function closeModal(e) {
+        if (e.key === 'Escape') {
+            modal.remove();
+            document.removeEventListener('keydown', closeModal);
+        }
+    });
+
+    document.body.appendChild(modal);
+}// Scroll reveal using IntersectionObserver
 function initScrollAnimations() {
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const observer = new IntersectionObserver((entries) => {
@@ -345,7 +411,7 @@ const searchIndex = [
         type: "section"
     },
     {
-        title: "Mga Adhilain - Campaigns",
+        title: "Mga Adhikain - Campaigns",
         content: "Campaigns awareness education gender-based violence karahasan domestic abuse prevention advocacy Philippines women's rights empowerment",
         url: "campaigns.html",
         section: "campaigns",
@@ -1339,26 +1405,61 @@ function initHorizontalScroll() {
 
     if (!scrollContainer || !scrollLeftBtn || !scrollRightBtn) return;
 
+    let currentCardIndex = 0;
+    const cards = scrollContainer.children;
+
+    // Function to scroll to a specific card
+    function scrollToCard(cardIndex) {
+        if (cardIndex < 0 || cardIndex >= cards.length) return;
+
+        const targetCard = cards[cardIndex];
+        targetCard.scrollIntoView({
+            behavior: 'smooth',
+            block: 'nearest',
+            inline: 'center'
+        });
+
+        currentCardIndex = cardIndex;
+    }
+
     // Scroll left
     scrollLeftBtn.addEventListener('click', () => {
-        scrollContainer.scrollBy({
-            left: -320, // Scroll by card width + gap
-            behavior: 'smooth'
-        });
+        const newIndex = Math.max(0, currentCardIndex - 1);
+        scrollToCard(newIndex);
     });
 
     // Scroll right
     scrollRightBtn.addEventListener('click', () => {
-        scrollContainer.scrollBy({
-            left: 320, // Scroll by card width + gap
-            behavior: 'smooth'
-        });
+        const newIndex = Math.min(cards.length - 1, currentCardIndex + 1);
+        scrollToCard(newIndex);
     });
+
+    // Update current card index when user scrolls manually
+    function updateCurrentIndex() {
+        const containerRect = scrollContainer.getBoundingClientRect();
+        const containerCenter = containerRect.left + (containerRect.width / 2);
+
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+
+        Array.from(cards).forEach((card, index) => {
+            const cardRect = card.getBoundingClientRect();
+            const cardCenter = cardRect.left + (cardRect.width / 2);
+            const distance = Math.abs(containerCenter - cardCenter);
+
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestIndex = index;
+            }
+        });
+
+        currentCardIndex = closestIndex;
+    }
 
     // Update button visibility based on scroll position
     function updateButtonVisibility() {
-        const isAtStart = scrollContainer.scrollLeft <= 0;
-        const isAtEnd = scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth - 1;
+        const isAtStart = currentCardIndex <= 0;
+        const isAtEnd = currentCardIndex >= cards.length - 1;
 
         scrollLeftBtn.style.opacity = isAtStart ? '0.5' : '1';
         scrollRightBtn.style.opacity = isAtEnd ? '0.5' : '1';
@@ -1370,10 +1471,16 @@ function initHorizontalScroll() {
     updateButtonVisibility();
 
     // Update on scroll
-    scrollContainer.addEventListener('scroll', updateButtonVisibility);
+    scrollContainer.addEventListener('scroll', () => {
+        updateCurrentIndex();
+        updateButtonVisibility();
+    });
 
     // Also update on window resize
-    window.addEventListener('resize', updateButtonVisibility);
+    window.addEventListener('resize', () => {
+        updateCurrentIndex();
+        updateButtonVisibility();
+    });
 }
 
 // Copy to clipboard functionality for hotline numbers
