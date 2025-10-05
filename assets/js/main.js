@@ -45,13 +45,13 @@ window.addEventListener('load', function() {
 
 // Team data - edit this array to update team members
 const team = [
-    'Nianga, Reinna Flor P.|reinnaflorpepitonianga@gmail.com',
-    'Marquiso, Rean Alexa B.|mreanalexa@gmail.com',
     'Abanggan, Eljann R.|eljannabanggan1@gmail.com',
     'Arañez, Jethro T.|Akositroy17@gmail.com',
     'Cagna-an, Aian Rey B.|aianrey577@gmail.com',
     'Mamaran, Chester Ivan B.|navirethsehc@gmail.com',
+    'Marquiso, Rean Alexa B.|mreanalexa@gmail.com',
     'Moniset, Rj Angelo M.|rjangelomoniset1@gmail.com',
+    'Nianga, Reinna Flor P.|reinnaflorpepitonianga@gmail.com',
     'Pilar, Kent Dave R.|kentdavepilar341@gmail.com',
     'Reloj, Lurense V.|lurensereloj@gmail.com',
     'Resma, Kurt Dave B.|resmakurt63@gmail.com',
@@ -149,16 +149,17 @@ async function loadAffirmation() {
 function renderTeam() {
     const teamContainer = document.getElementById('teamContainer');
     if (!teamContainer) return;
-    
+
     teamContainer.innerHTML = team.map(member => {
         const [name, email] = member.split('|');
-        const initials = name.split(' ').map(part => part[0]).join('').substring(0, 2);
-        
+
         return `
             <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow reveal">
                 <div class="text-center">
-                    <div class="w-20 h-20 bg-pink-600 text-white rounded-full flex items-center justify-center text-xl font-bold mx-auto mb-4">
-                        ${initials}
+                    <div class="w-20 h-20 bg-gray-200 rounded-full flex items-center justify-center text-gray-400 mx-auto mb-4">
+                        <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                        </svg>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mb-2">${name}</h3>
                     <a href="mailto:${email}" class="text-pink-600 hover:text-pink-800 transition-colors text-sm">
