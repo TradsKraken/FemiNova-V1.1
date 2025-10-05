@@ -1,0 +1,525 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(24px) scale(0.99);
+  transition: opacity 600ms cubic-bezier(.2,.9,.3,1), transform 600ms cubic-bezier(.2,.9,.3,1);
+  will-change: opacity, transform;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Stagger container helper */
+.reveal-stagger > * {
+  transition-delay: 120ms;
+}
+
+/* Slight horizontal reveal variant */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-18px);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+.reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Navbar scroll animation */
+.navbar-scrolled {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+}
+
+.navbar-initial {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(5px);
+  transform: translateY(0);
+}
+
+/* Campaign card hover effects */
+.campaign-card {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.campaign-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Counter scrolling animation with motion blur */
+.counter-scrolling {
+  position: relative;
+  overflow: hidden;
+}
+
+.counter-digit {
+  display: inline-block;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform, filter;
+}
+
+.counter-digit.scrolling {
+  animation: digitScroll 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes digitScroll {
+  0% {
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+  20% {
+    transform: translateY(-12px) scale(1.12);
+    filter: blur(2px);
+  }
+  40% {
+    transform: translateY(-20px) scale(1.18);
+    filter: blur(4px);
+  }
+  60% {
+    transform: translateY(-12px) scale(1.12);
+    filter: blur(2px);
+  }
+  80% {
+    transform: translateY(-4px) scale(1.06);
+    filter: blur(1px);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+/* Enhanced counter container styles */
+.counter-enhanced {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.counter-enhanced::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(236, 72, 153, 0.1), rgba(219, 39, 119, 0.1));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.counter-enhanced.updating::before {
+  opacity: 1;
+}
+
+.counter-enhanced.updating {
+  box-shadow: 0 0 20px rgba(236, 72, 153, 0.3);
+}
+ 
+/* Click feedback animation */
+.click-animate {
+  animation: clickBounce 0.6s ease;
+}
+
+@keyframes clickBounce {
+  0% { transform: scale(1); box-shadow: 0 0 0 rgba(236, 72, 153, 0.4); }
+  25% { transform: scale(0.85); box-shadow: 0 0 20px rgba(236, 72, 153, 0.6); }
+  50% { transform: scale(1.1); box-shadow: 0 0 30px rgba(236, 72, 153, 0.8); }
+  75% { transform: scale(0.95); box-shadow: 0 0 20px rgba(236, 72, 153, 0.6); }
+  100% { transform: scale(1); box-shadow: 0 0 0 rgba(236, 72, 153, 0.4); }
+}/* Button hover animations */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all 300ms ease;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 500ms ease;
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+/* Button click animations */
+.modal-btn:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* Ripple effect for buttons */
+.ripple-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.ripple-btn:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Enhanced button press feedback */
+.btn-press {
+  transition: all 0.1s ease;
+}
+
+.btn-press:active {
+  transform: scale(0.95) translateY(1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Stats counter animation */
+.stat-number {
+  transition: all 500ms ease;
+}
+
+.stat-number:hover {
+  transform: scale(1.1);
+  color: #db2777;
+}
+
+/* Icon bounce animation */
+.icon-bounce {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Hamburger Menu Animations */
+.hamburger-icon {
+  transition: all 300ms ease;
+  transform-origin: center;
+}
+
+.hamburger-icon.active .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+
+.hamburger-icon.active .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-icon.active .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -4px);
+}
+
+.hamburger-line {
+  transition: all 300ms ease;
+  transform-origin: center;
+}
+
+/* Mobile Menu Animations */
+.mobile-menu {
+  transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-10px);
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+.mobile-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+  max-height: 500px;
+}
+
+/* Mobile menu items stagger animation */
+.mobile-menu-item {
+  transition: all 300ms ease;
+  transform: translateX(-20px);
+  opacity: 0;
+}
+
+.mobile-menu-item.active {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.mobile-menu-item:nth-child(1).active { transition-delay: 100ms; }
+.mobile-menu-item:nth-child(2).active { transition-delay: 150ms; }
+.mobile-menu-item:nth-child(3).active { transition-delay: 200ms; }
+.mobile-menu-item:nth-child(4).active { transition-delay: 250ms; }
+.mobile-menu-item:nth-child(5).active { transition-delay: 300ms; }
+.mobile-menu-item:nth-child(6).active { transition-delay: 350ms; }
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, #ec4899, #8b5cf6, #3b82f6);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Menu item hover animations */
+nav a, nav button {
+  transition: all 200ms ease;
+  position: relative;
+}
+
+nav a:hover, nav button:hover {
+  transform: translateY(-1px);
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 50%;
+  background-color: #db2777;
+  transition: all 300ms ease;
+}
+
+nav a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+/* Modal Animations */
+.modal-overlay {
+  animation: modalFadeIn 300ms ease-out;
+}
+
+.modal-content {
+  animation: modalSlideIn 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Form field animations */
+.form-field {
+  animation: fieldSlideIn 500ms ease-out both;
+}
+
+.form-field:nth-child(1) { animation-delay: 100ms; }
+.form-field:nth-child(2) { animation-delay: 200ms; }
+.form-field:nth-child(3) { animation-delay: 300ms; }
+
+/* Button hover animations */
+.modal-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 300ms ease;
+}
+
+.modal-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 500ms ease;
+}
+
+.modal-btn:hover::before {
+  left: 100%;
+}
+
+.modal-btn:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* Close button animation */
+.close-btn {
+  transition: all 300ms ease;
+  transform: rotate(0deg);
+}
+
+.close-btn:hover {
+  transform: rotate(90deg);
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+}
+
+@keyframes fieldSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Reduce motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal-left, .reveal.revealed, .reveal-left.revealed {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  nav {
+    transition: none !important;
+    transform: none !important;
+  }
+  nav a, nav button {
+    transition: none !important;
+  }
+  nav a::after {
+    display: none;
+  }
+}
+
+/* Elegant Navbar Styles */
+.navbar-elegant {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(236, 72, 153, 0.1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 300ms ease;
+  transform: translateY(0);
+}
+
+.navbar-elegant.navbar-scrolled {
+  background: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Navbar visibility animations */
+.navbar-visible {
+  transform: translateY(0) !important;
+}
+
+.navbar-hidden {
+  transform: translateY(-100%) !important;
+}
+
+/* Navigation Link Animations */
+.nav-link {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.1), transparent);
+  transition: left 500ms ease;
+}
+
+.nav-link:hover::before {
+  left: 100%;
+}
+
+/* Elegant Button Effects */
+.elegant-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.elegant-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 600ms ease;
+}
+
+.elegant-btn:hover::before {
+  left: 100%;
+}
+
+.elegant-btn:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+/* Elegant Hamburger Animation */
+.elegant-hamburger {
+  position: relative;
+}
+
+.elegant-hamburger::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(236, 72, 153, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 300ms ease, height 300ms ease;
+}
+
+.elegant-hamburger:hover::before {
+  width: 40px;
+  height: 40px;
+}

@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FemiNova - Empowering Women's Voices</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/scroll-animations.css">
+    <style>
+        .hero-bg {
+            background-image: url('./Background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .gradient-overlay {
+            background: linear-gradient(to bottom, rgba(219, 39, 119, 0.3), rgba(236, 72, 153, 0.5));
+        }
+
+        /* Navbar subtle semi-transparent gradient with backdrop blur */
+        .navbar-elegant {
+            background: linear-gradient(90deg, rgba(255,255,255,0.85) 0%, rgba(255,245,250,0.6) 50%, rgba(255,255,255,0.78) 100%);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid rgba(236, 72, 153, 0.08);
+        }
+
+        /* Slight shadow tweak to match translucent background */
+        .navbar-elegant.shadow-sm {
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+        }
+
+        /* Loading Screen Animations */
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fade-out {
+            0% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(0.98) translateY(-2px);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0.95) translateY(-5px);
+            }
+        }
+
+        @keyframes gentle-pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.9;
+            }
+        }
+
+        @keyframes spin-reverse {
+            from {
+                transform: rotate(360deg);
+            }
+            to {
+                transform: rotate(0deg);
+            }
+        }
+
+        .animate-spin-reverse {
+            animation: spin-reverse 1.5s linear infinite;
+        }
+
+        .animate-fade-in {
+            animation: fade-in 1.2s ease-out;
+        }
+
+        .loading-screen-hide {
+            animation: fade-out 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        /* Mobile navbar hide/show animation */
+        .mobile-nav {
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-nav-hidden {
+            transform: translateY(-100%);
+        }
+        .mobile-nav-visible {
+            transform: translateY(0);
+        }
+
+        /* Ensure content is not obscured by the fixed top mobile nav */
+        @media (max-width: 767px) {
+            body { padding-top: 56px; } /* leave room for mobile nav */
+            .mobile-nav .container { height: 56px; } /* slightly smaller than h-12 to feel compact */
+            .mobile-menu-panel a { padding-left: 0.5rem; padding-right: 0.5rem; }
+        }
+
+        /* Hide scrollbar for horizontal scroll container */
+        .scrollbar-hide {
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;  /* Firefox */
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;  /* Safari and Chrome */
+        }
+    </style>
+</head>
+<body class="bg-pink-50 text-gray-800">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-pink-50 to-white">
+        <div class="text-center">
+            <!-- Logo -->
+            <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl shadow-lg mb-8" style="animation: gentle-pulse 2s ease-in-out infinite;">
+                <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+            </div>
+
+            <!-- Brand Name -->
+            <h1 class="text-4xl font-bold bg-gradient-to-r from-pink-600 to-pink-700 bg-clip-text text-transparent mb-4 animate-fade-in">
+                FemiNova
+            </h1>
+
+            <!-- Loading Spinner -->
+            <div class="relative mb-4">
+                <div class="w-12 h-12 border-4 border-pink-200 border-t-pink-600 rounded-full animate-spin mx-auto"></div>
+                <div class="absolute inset-0 w-12 h-12 border-4 border-transparent border-t-pink-400 rounded-full animate-spin-reverse mx-auto"></div>
+            </div>
+
+            <!-- Loading Text -->
+            <p class="text-gray-600 animate-fade-in" style="animation-delay: 0.3s; animation-fill-mode: both;">Empowering women's voices...</p>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar-elegant sticky top-0 z-50 backdrop-blur-md border-b border-pink-100/50 shadow-sm hidden md:block">
+        <div class="container mx-auto px-4 md:px-6 py-0.5 md:py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <!-- Elegant Logo with Icon -->
+                    <div class="w-8 h-8 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h1 class="text-xl md:text-2xl font-bold bg-gradient-to-r from-pink-600 to-pink-700 bg-clip-text text-transparent">FemiNova</h1>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="nav-link relative text-gray-700 hover:text-pink-600 font-medium transition-all duration-300 py-1.5 px-2.5 rounded-lg hover:bg-pink-50/50 group">
+                        <span class="relative z-10">Home</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-pink-600 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+                    <a href="#about" class="nav-link relative text-gray-700 hover:text-pink-600 font-medium transition-all duration-300 py-1.5 px-2.5 rounded-lg hover:bg-pink-50/50 group">
+                        <span class="relative z-10">About</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-pink-600 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+                    <a href="#team" class="nav-link relative text-gray-700 hover:text-pink-600 font-medium transition-all duration-300 py-1.5 px-2.5 rounded-lg hover:bg-pink-50/50 group">
+                        <span class="relative z-10">Team</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-pink-600 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+                    <a href="campaigns.html" class="nav-link relative text-gray-700 hover:text-pink-600 font-medium transition-all duration-300 py-1.5 px-2.5 rounded-lg hover:bg-pink-50/50 group">
+                        <span class="relative z-10">Mga Adhilain</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-pink-600 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+                    <a href="#contact" class="nav-link relative text-gray-700 hover:text-pink-600 font-medium transition-all duration-300 py-1.5 px-2.5 rounded-lg hover:bg-pink-50/50 group">
+                        <span class="relative z-10">Contact</span>
+                        <div class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-pink-500 to-pink-600 group-hover:w-full transition-all duration-300"></div>
+                    </a>
+
+                    <!-- Elegant Login Button -->
+                    <div class="h-8 w-px bg-gradient-to-b from-transparent via-pink-200 to-transparent"></div>
+                    <button onclick="showLogin()" class="elegant-btn bg-gradient-to-r from-pink-500 to-pink-600 text-white px-6 py-2.5 rounded-xl hover:from-pink-600 hover:to-pink-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl font-medium">
+                        <span class="flex items-center space-x-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                            </svg>
+                            <span>Login</span>
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Mobile navigation is provided by the fixed bottom bar (mobile-only) -->
+            </div>
+    </nav>
+
+    <!-- Mobile Navigation (visible on small screens only) -->
+    <nav class="mobile-nav fixed top-0 left-0 right-0 z-50 md:hidden bg-white/95 border-b border-pink-100/50 shadow-sm">
+        <div class="container mx-auto px-4 flex items-center justify-between h-12">
+            <div class="flex items-center space-x-3">
+                <div class="w-7 h-7 bg-gradient-to-br from-pink-500 to-pink-600 rounded-md flex items-center justify-center shadow">
+                    <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                </div>
+                <span class="text-sm font-semibold text-gray-800">FemiNova</span>
+            </div>
+
+            <div class="flex items-center">
+                <button id="mobileMenuBtn" aria-label="Open menu" class="p-2 rounded-md text-pink-600 hover:bg-pink-50 focus:outline-none focus:ring-2 focus:ring-pink-300">
+                    <svg id="mobileMenuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile menu panel (collapsed by default) -->
+        <div id="mobileMenuPanel" class="mobile-menu-panel max-h-0 overflow-hidden transition-all duration-300 bg-white border-b border-pink-50">
+            <div class="flex flex-col px-4 py-2 space-y-1">
+                <a href="#home" onclick="closeMobileMenu()" class="block text-gray-700 py-2 px-2 rounded hover:bg-pink-50 transition-all duration-300 hover:text-pink-600">Home</a>
+                <a href="#about" onclick="closeMobileMenu()" class="block text-gray-700 py-2 px-2 rounded hover:bg-pink-50 transition-all duration-300 hover:text-pink-600">About</a>
+                <a href="campaigns.html" onclick="closeMobileMenu()" class="block text-gray-700 py-2 px-2 rounded hover:bg-pink-50 transition-all duration-300 hover:text-pink-600">Mga Adhilain</a>
+                <a href="#team" onclick="closeMobileMenu()" class="block text-gray-700 py-2 px-2 rounded hover:bg-pink-50 transition-all duration-300 hover:text-pink-600">Team</a>
+                <a href="#contact" onclick="closeMobileMenu()" class="block text-gray-700 py-2 px-2 rounded hover:bg-pink-50 transition-all duration-300 hover:text-pink-600">Contact</a>
+                <button onclick="showLogin(); closeMobileMenu()" class="mt-2 bg-gradient-to-r from-pink-500 to-pink-600 text-white px-4 py-2 rounded-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 shadow-lg hover:shadow-xl font-medium">
+                    <span class="flex items-center justify-center space-x-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"/>
+                        </svg>
+                        <span>Login</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg relative pt-24 pb-12 md:min-h-screen md:flex md:items-center md:justify-center md:pt-0 md:pb-0">
+        <div class="gradient-overlay absolute inset-0"></div>
+    <div class="relative z-10 text-center max-w-4xl mx-auto px-4 pt-8 md:pt-0 reveal">
+            <div class="inline-flex items-center gap-2 mx-auto mb-6 bg-white/16 backdrop-blur-md text-white px-6 py-3 rounded-full border border-white/20 shadow-md">
+                <span class="text-2xl font-bold tracking-tight">FemiNova</span>
+            </div>
+
+            <h2 class="text-5xl md:text-7xl font-bold text-white mb-8 drop-shadow-lg">
+                Empowering Women's Voices
+            </h2>
+            <p class="text-xl md:text-2xl text-white mb-12 drop-shadow-md">
+                Join our movement to create positive change for women everywhere
+            </p>
+            
+            <!-- Search Bar -->
+            <div class="max-w-2xl mx-auto mb-12">
+                <div class="relative">
+                    <input 
+                        type="text" 
+                        id="searchInput"
+                        placeholder="Search campaigns, stories, or resources..." 
+                        class="w-full px-6 py-4 rounded-full text-lg border border-white/30 bg-white/40 backdrop-blur-sm text-gray-900 outline-none shadow-lg focus:ring-4 focus:ring-pink-300 transition"
+                    >
+                    <button onclick="performSearch()" class="absolute right-2 top-2 bg-pink-600 text-white p-2 rounded-full hover:bg-pink-700 transition">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Affirmation (inline) -->
+            <div class="mt-6">
+                <p id="affirmationText" class="text-lg md:text-xl text-white/90 italic mb-2">Loading your daily affirmation...</p>
+                <p class="text-sm text-white/75">Start your day with positivity and empowerment — <a href="#" class="underline text-white">Get involved</a>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-24 bg-gradient-to-br from-pink-50 via-white to-pink-25 relative overflow-hidden">
+        <!-- Decorative Background Elements -->
+        <div class="absolute top-0 left-0 w-96 h-96 bg-pink-100/30 rounded-full -translate-x-48 -translate-y-48"></div>
+        <div class="absolute bottom-0 right-0 w-80 h-80 bg-pink-200/20 rounded-full translate-x-40 translate-y-40"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="max-w-6xl mx-auto">
+                <!-- Section Header -->
+                <div class="text-center mb-16 reveal">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl shadow-lg mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-5xl md:text-6xl font-bold bg-gradient-to-r from-pink-600 via-pink-700 to-pink-800 bg-clip-text text-transparent mb-6">
+                        About FemiNova
+                    </h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                        Empowering women through advocacy, education, and community support. We believe in creating a world where every woman can thrive with dignity, respect, and equal opportunities.
+                    </p>
+                </div>
+
+                <!-- Core Values Grid -->
+                <div class="grid md:grid-cols-3 gap-8 mb-16">
+                    <!-- Mission Card -->
+                    <div class="group bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 reveal border border-pink-100/50 hover:border-pink-200/70 hover:-translate-y-2">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-pink-700 mb-4 group-hover:text-pink-800 transition-colors">Scope 1</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            <strong>Education and Awareness</strong> - Teaching about the rights, status, and capabilities of women.
+                        </p>
+                    </div>
+
+                    <!-- Vision Card -->
+                    <div class="group bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 reveal border border-pink-100/50 hover:border-pink-200/70 hover:-translate-y-2">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-pink-700 mb-4 group-hover:text-pink-800 transition-colors">Scope 2</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            <strong>Support and Community</strong> - Creating a safe space where women support and unite with one another.
+                        </p>
+                    </div>
+
+                    <!-- Goals Card -->
+                    <div class="group bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-500 reveal border border-pink-100/50 hover:border-pink-200/70 hover:-translate-y-2">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-pink-700 mb-4 group-hover:text-pink-800 transition-colors">Scope 3</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            <strong>Action and Change</strong> - Empowering the voices of women in society and advancing gender equality.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 bg-pink-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-pink-600 text-center mb-12 reveal-left">Our Team</h2>
+            <div id="teamContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Team members will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Campaign Previews -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+        <h2 class="text-4xl font-bold text-pink-600 text-center mb-12">Mga Adhilain</h2>
+            
+            <!-- Horizontal Scrollable Container -->
+            <div class="relative max-w-7xl mx-auto">
+                <!-- Scroll Left Button -->
+                <button id="scrollLeft" class="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 border border-pink-100 hover:border-pink-200 group">
+                    <svg class="w-6 h-6 text-pink-600 group-hover:text-pink-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Scroll Right Button -->
+                <button id="scrollRight" class="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 border border-pink-100 hover:border-pink-200 group">
+                    <svg class="w-6 h-6 text-pink-600 group-hover:text-pink-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Scrollable Content -->
+                <div id="campaignsScroll" class="flex overflow-x-auto scrollbar-hide gap-6 pb-4 px-12" style="scroll-behavior: smooth;">
+                    <!-- Campaign 1: Ano nga ba ang karahasan? -->
+                    <div class="flex-shrink-0 w-80 bg-gradient-to-br from-pink-50 to-pink-100 rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-pink-200 reveal">
+                        <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-pink-700 mb-3">Ano nga ba ang karahasan?</h3>
+                        <p class="text-gray-700 text-sm mb-4 leading-relaxed">
+                            Understanding the different forms of violence and abuse that affect women and girls.
+                        </p>
+                        <a href="campaigns.html#campaign1" class="inline-flex items-center text-pink-600 hover:text-pink-700 font-medium text-sm transition-colors">
+                            Learn More
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Campaign 2: Mga uri ng karahasan -->
+                    <div class="flex-shrink-0 w-80 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-purple-200 reveal">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-purple-700 mb-3">Mga uri ng karahasan</h3>
+                        <p class="text-gray-700 text-sm mb-4 leading-relaxed">
+                            Exploring the various types of violence and their impact on women's lives.
+                        </p>
+                        <a href="campaigns.html#campaign2" class="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium text-sm transition-colors">
+                            Learn More
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Campaign 3: Mga dahilan ng karahasan -->
+                    <div class="flex-shrink-0 w-80 bg-gradient-to-br from-indigo-50 to-indigo-100 rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-indigo-200 reveal">
+                        <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-indigo-700 mb-3">Mga dahilan ng karahasan</h3>
+                        <p class="text-gray-700 text-sm mb-4 leading-relaxed">
+                            Understanding the root causes and contributing factors to gender-based violence.
+                        </p>
+                        <a href="campaigns.html#campaign3" class="inline-flex items-center text-indigo-600 hover:text-indigo-700 font-medium text-sm transition-colors">
+                            Learn More
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Campaign 4: Mga epekto ng karahasan -->
+                    <div class="flex-shrink-0 w-80 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-blue-200 reveal">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-blue-700 mb-3">Mga epekto ng karahasan</h3>
+                        <p class="text-gray-700 text-sm mb-4 leading-relaxed">
+                            The lasting impact of violence on survivors and their journey to healing.
+                        </p>
+                        <a href="campaigns.html#campaign4" class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors">
+                            Learn More
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Campaign 5: Paano labanan ang karahasan -->
+                    <div class="flex-shrink-0 w-80 bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-green-200 reveal">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-green-700 mb-3">Paano labanan ang karahasan</h3>
+                        <p class="text-gray-700 text-sm mb-4 leading-relaxed">
+                            Practical strategies and actions to combat gender-based violence in our communities.
+                        </p>
+                        <a href="campaigns.html#campaign5" class="inline-flex items-center text-green-600 hover:text-green-700 font-medium text-sm transition-colors">
+                            Learn More
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Campaign 6: Get free professionalation -->
+                    <div class="flex-shrink-0 w-80 bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-yellow-200 reveal">
+                        <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-yellow-700 mb-3">Get free professionalation</h3>
+                        <p class="text-gray-700 text-sm mb-4 leading-relaxed">
+                            Access to free professional counseling and support services for survivors.
+                        </p>
+                        <a href="campaigns.html#campaign6" class="inline-flex items-center text-yellow-600 hover:text-yellow-700 font-medium text-sm transition-colors">
+                            Learn More
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Campaign 7: paano magvolunteer, donate, advocate -->
+                    <div class="flex-shrink-0 w-80 bg-gradient-to-br from-pink-50 to-purple-100 rounded-xl p-6 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 border border-purple-200 reveal">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-semibold text-purple-700 mb-3">paano magvolunteer, donate, advocate</h3>
+                        <p class="text-gray-700 text-sm mb-4 leading-relaxed">
+                            Discover meaningful ways to support survivors and contribute to ending gender-based violence.
+                        </p>
+                        <a href="campaigns.html#campaign7" class="inline-flex items-center text-purple-600 hover:text-purple-700 font-medium text-sm transition-colors">
+                            Learn More
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section class="py-20 bg-pink-100">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-pink-600 mb-12">Get Involved</h2>
+            <p class="text-xl text-gray-700 mb-12 max-w-3xl mx-auto">
+                Join our movement and make a difference. There are many ways to support our cause and help create positive change.
+            </p>
+            <div class="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white p-8 rounded-xl shadow-lg reveal">
+                    <h3 class="text-2xl font-semibold text-pink-600 mb-4">Donate</h3>
+                    <p class="text-gray-700 mb-6">Support our programs and help us reach more women in need.</p>
+                    <button onclick="handleDonation()" class="modal-btn bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition font-medium">
+                        Donate Now
+                    </button>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg reveal">
+                    <h3 class="text-2xl font-semibold text-pink-600 mb-4">Volunteer</h3>
+                    <p class="text-gray-700 mb-6">Share your skills and time to help women in your community.</p>
+                    <button onclick="handleVolunteer()" class="modal-btn bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition font-medium">
+                        Volunteer
+                    </button>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-lg reveal">
+                    <h3 class="text-2xl font-semibold text-pink-600 mb-4">Join Us</h3>
+                    <p class="text-gray-700 mb-6">Become a member and be part of our growing community.</p>
+                    <button onclick="showSignup()" class="modal-btn bg-pink-600 text-white px-6 py-3 rounded-lg hover:bg-pink-700 transition font-medium">
+                        Join Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Need Help Section -->
+    <section id="help" class="py-20 bg-gradient-to-br from-pink-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12 reveal-left">
+                    <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl shadow-lg mb-6">
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                        </svg>
+                    </div>
+                    <h2 class="text-4xl font-bold text-red-600 mb-4">Need Help?</h2>
+                    <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                        If you're in danger or need immediate assistance, please reach out to us. Your safety is our priority.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-red-100 reveal">
+                    <form onsubmit="handleHelpSubmit(event)" class="space-y-6">
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="helpName" class="block text-gray-700 font-semibold mb-2">Full Name *</label>
+                                <input type="text" id="helpName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-300 focus:border-red-500 transition-all">
+                            </div>
+                            <div>
+                                <label for="helpPhone" class="block text-gray-700 font-semibold mb-2">Phone Number *</label>
+                                <input type="tel" id="helpPhone" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-300 focus:border-red-500 transition-all">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="helpAddress" class="block text-gray-700 font-semibold mb-2">Current Address *</label>
+                            <textarea id="helpAddress" rows="3" required placeholder="Please provide your current location for emergency services" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-300 focus:border-red-500 transition-all"></textarea>
+                        </div>
+
+                        <div>
+                            <label for="helpSituation" class="block text-gray-700 font-semibold mb-2">Describe Your Situation *</label>
+                            <textarea id="helpSituation" rows="5" required placeholder="Please describe what danger you're in and what kind of help you need. Be as specific as possible." class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-300 focus:border-red-500 transition-all"></textarea>
+                        </div>
+
+                        <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                            <div class="flex items-start">
+                                <svg class="w-5 h-5 text-red-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                                </svg>
+                                <div>
+                                    <h4 class="text-red-800 font-semibold mb-1">Emergency Notice</h4>
+                                    <p class="text-red-700 text-sm">
+                                        If you're in immediate danger, please call emergency services (911) first. This form is for non-emergency support and guidance.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="bg-red-600 text-white px-12 py-4 rounded-xl hover:bg-red-700 transition-all duration-300 font-bold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                                <span class="flex items-center justify-center space-x-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                                    </svg>
+                                    <span>Send Help Request</span>
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-pink-600 text-center mb-12">Contact Us</h2>
+                <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                <div class="reveal-left">
+                    <h3 class="text-2xl font-semibold text-pink-600 mb-6">Get in Touch</h3>
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                            <input type="text" id="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-300 focus:border-pink-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-300 focus:border-pink-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-300 focus:border-pink-500"></textarea>
+                        </div>
+                        <button type="submit" class="bg-pink-600 text-white px-8 py-3 rounded-lg hover:bg-pink-700 transition font-medium">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                <div class="reveal">
+                    <h3 class="text-2xl font-semibold text-pink-600 mb-6">Follow Us</h3>
+                    <p class="text-gray-700 mb-8">
+                        Stay connected with us on social media for the latest updates and stories.
+                    </p>
+                    <div class="space-y-4">
+                        <a href="https://twitter.com/FemiNova_Official" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-700 hover:text-pink-600 transition group" aria-label="Follow us on Twitter">
+                            <svg class="w-6 h-6 mr-3 group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                            </svg>
+                            <span class="group-hover:translate-x-1 transition-transform duration-200">@FemiNova_Official</span>
+                        </a>
+                        <a href="https://facebook.com/FemiNova_Official" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-700 hover:text-pink-600 transition group" aria-label="Follow us on Facebook">
+                            <svg class="w-6 h-6 mr-3 group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                            <span class="group-hover:translate-x-1 transition-transform duration-200">@FemiNova_Official</span>
+                        </a>
+                        <a href="https://instagram.com/FemiNova_Official" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-700 hover:text-pink-600 transition group" aria-label="Follow us on Instagram">
+                            <svg class="w-6 h-6 mr-3 group-hover:scale-110 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C8.396 0 7.966.021 6.706.072 5.447.124 4.509.245 3.717.417c-.806.187-1.491.441-2.174.814C.76 1.603.446 2.287.246 3.093c-.172.802-.293.74-.345 1.999C-.1 6.352-.121 6.782-.121 10.403c0 3.621.021 4.051.072 5.311.052 1.259.173 2.197.345 2.999.2.806.514 1.49.814 2.174.683.373 1.368.627 2.174.814.802.172 1.74.293 2.999.345C6.782 22.1 7.212 22.121 10.833 22.121c3.621 0 4.051-.021 5.311-.072 1.259-.052 2.197-.173 2.999-.345.806-.187 1.491-.441 2.174-.814.5-.287.814-.601 1.014-1.407.172-.802.293-1.74.345-2.999.052-1.26.072-1.69.072-5.311 0-3.621-.021-4.051-.072-5.311-.052-1.259-.173-2.197-.345-2.999-.2-.806-.514-1.49-.814-2.174C19.248.627 18.563.373 17.757.186c-.802-.172-1.74-.293-2.999-.345C15.218.021 14.788 0 11.167 0h-.544c-.621 0-1.051.021-1.311.072zM9.858 2.041c.631 0 1.411.021 2.041.072.631.052 1.197.124 1.573.245.4.124.687.267 1.001.481.314.214.574.474.788.788.214.314.357.601.481 1.001.121.376.193.942.245 1.573.052.63.072 1.41.072 2.041s-.021 1.411-.072 2.041c-.052.631-.124 1.197-.245 1.573-.124.4-.267.687-.481 1.001-.214.314-.474.574-.788.788-.314.214-.601.357-1.001.481-.376.121-.942.193-1.573.245-.63.052-1.41.072-2.041.072s-1.411-.021-2.041-.072c-.631-.052-1.197-.124-1.573-.245-.4-.124-.687-.267-1.001-.481-.314-.214-.574-.474-.788-.788-.214-.314-.357-.601-.481-1.001-.121-.376-.193-.942-.245-1.573-.052-.63-.072-1.41-.072-2.041s.021-1.411.072-2.041c.052-.631.124-1.197.245-1.573.124-.4.267-.687.481-1.001.214-.314.474-.574.788-.788.314-.214.601-.357 1.001-.481.376-.121.942-.193 1.573-.245.63-.052 1.41-.072 2.041-.072zM12.017 6.554c-2.165 0-3.922 1.757-3.922 3.922 0 2.165 1.757 3.922 3.922 3.922 2.165 0 3.922-1.757 3.922-3.922 0-2.165-1.757-3.922-3.922-3.922zm0 6.48c-1.407 0-2.551-1.144-2.551-2.551 0-1.407 1.144-2.551 2.551-2.551 1.407 0 2.551 1.144 2.551 2.551 0 1.407-1.144 2.551-2.551 2.551zM19.012 6.554c-.631 0-1.144.513-1.144 1.144 0 .631.513 1.144 1.144 1.144.631 0 1.144-.513 1.144-1.144 0-.631-.513-1.144-1.144-1.144z"/>
+                            </svg>
+                            <span class="group-hover:translate-x-1 transition-transform duration-200">@FemiNova_Official</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 modal-overlay">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-semibold text-pink-600">Login</h3>
+                <button onclick="closeModal()" class="close-btn text-gray-500 hover:text-gray-700 p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form onsubmit="handleLogin(event)">
+                <div class="space-y-4">
+                    <div class="form-field">
+                        <label for="loginEmail" class="block text-gray-700 font-medium mb-2">Email</label>
+                        <input type="email" id="loginEmail" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-300 focus:border-pink-500 transition-all duration-300">
+                    </div>
+                    <div class="form-field">
+                        <label for="loginPassword" class="block text-gray-700 font-medium mb-2">Password</label>
+                        <input type="password" id="loginPassword" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-300 focus:border-pink-500 transition-all duration-300">
+                    </div>
+                    <div class="form-field">
+                        <button type="submit" class="modal-btn w-full bg-pink-600 text-white py-3 rounded-lg hover:bg-pink-700 transition font-medium">
+                            Login
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">Don't have an account? 
+                    <button onclick="showSignupFromLogin()" class="text-pink-600 hover:underline transition-colors duration-300">Sign up</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 modal-overlay">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-semibold text-pink-600">Sign Up</h3>
+                <button onclick="closeModal()" class="close-btn text-gray-500 hover:text-gray-700 p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form onsubmit="handleSignup(event)">
+                <div class="space-y-4">
+                    <div class="form-field">
+                        <label for="signupName" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                        <input type="text" id="signupName" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-300 focus:border-pink-500 transition-all duration-300">
+                    </div>
+                    <div class="form-field">
+                        <label for="signupEmail" class="block text-gray-700 font-medium mb-2">Email</label>
+                        <input type="email" id="signupEmail" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-300 focus:border-pink-500 transition-all duration-300">
+                    </div>
+                    <div class="form-field">
+                        <label for="signupPassword" class="block text-gray-700 font-medium mb-2">Password</label>
+                        <input type="password" id="signupPassword" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pink-300 focus:border-pink-500 transition-all duration-300">
+                    </div>
+                    <div class="form-field">
+                        <button type="submit" class="modal-btn w-full bg-pink-600 text-white py-3 rounded-lg hover:bg-pink-700 transition font-medium">
+                            Sign Up
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="mt-6 text-center">
+                <p class="text-gray-600">Already have an account? 
+                    <button onclick="showLoginFromSignup()" class="text-pink-600 hover:underline transition-colors duration-300">Login</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Modal -->
+    <div id="donationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 modal-overlay">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-pink-600">Make a Donation</h3>
+                <button onclick="closeModal()" class="close-btn text-gray-500 hover:text-gray-700 p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form onsubmit="handleDonationSubmit(event)" class="space-y-6">
+                <div class="form-field">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Donation Amount</label>
+                    <div class="grid grid-cols-3 gap-3 mb-4">
+                        <button type="button" onclick="selectAmount(25)" class="amount-btn border-2 border-pink-200 text-pink-600 py-3 px-4 rounded-lg hover:border-pink-400 transition">₱25</button>
+                        <button type="button" onclick="selectAmount(50)" class="amount-btn border-2 border-pink-200 text-pink-600 py-3 px-4 rounded-lg hover:border-pink-400 transition">₱50</button>
+                        <button type="button" onclick="selectAmount(100)" class="amount-btn border-2 border-pink-200 text-pink-600 py-3 px-4 rounded-lg hover:border-pink-400 transition">₱100</button>
+                    </div>
+                    <input type="number" id="customAmount" placeholder="Enter custom amount" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300">
+                </div>
+                <div class="form-field">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                    <input type="text" id="donorName" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300">
+                </div>
+                <div class="form-field">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input type="email" id="donorEmail" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300">
+                </div>
+                <div class="form-field">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone (Optional)</label>
+                    <input type="tel" id="donorPhone" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300">
+                </div>
+                <div class="form-field flex items-center">
+                    <input type="checkbox" id="anonymous" class="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded">
+                    <label for="anonymous" class="ml-2 block text-sm text-gray-700">Make this donation anonymous</label>
+                </div>
+                <div class="form-field">
+                    <button type="submit" class="modal-btn w-full bg-pink-600 text-white py-3 px-6 rounded-lg hover:bg-pink-700 transition font-semibold">
+                        Complete Donation
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Volunteer Modal -->
+    <div id="volunteerModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 modal-overlay">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 max-h-[90vh] overflow-y-auto modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-pink-600">Join Our Volunteer Team</h3>
+                <button onclick="closeModal()" class="close-btn text-gray-500 hover:text-gray-700 p-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form onsubmit="handleVolunteerSubmit(event)" class="space-y-6">
+                <div class="form-field">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                    <input type="text" id="volunteerName" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300">
+                </div>
+                <div class="form-field">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                    <input type="email" id="volunteerEmail" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300">
+                </div>
+                <div class="form-field">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                    <input type="tel" id="volunteerPhone" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300">
+                </div>
+                <div class="form-field">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Areas of Interest</label>
+                    <div class="space-y-2">
+                        <label class="flex items-center">
+                            <input type="checkbox" name="interests" value="counseling" class="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded">
+                            <span class="ml-2 text-sm text-gray-700">Counseling & Support</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" name="interests" value="education" class="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded">
+                            <span class="ml-2 text-sm text-gray-700">Education & Workshops</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" name="interests" value="outreach" class="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded">
+                            <span class="ml-2 text-sm text-gray-700">Community Outreach</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" name="interests" value="admin" class="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded">
+                            <span class="ml-2 text-sm text-gray-700">Administrative Support</span>
+                        </label>
+                        <label class="flex items-center">
+                            <input type="checkbox" name="interests" value="fundraising" class="h-4 w-4 text-pink-600 focus:ring-pink-500 border-gray-300 rounded">
+                            <span class="ml-2 text-sm text-gray-700">Fundraising</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Availability</label>
+                    <select id="availability" required class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300">
+                        <option value="">Select availability</option>
+                        <option value="weekdays">Weekdays</option>
+                        <option value="weekends">Weekends</option>
+                        <option value="evenings">Evenings</option>
+                        <option value="flexible">Flexible</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Tell us about yourself and why you want to volunteer</label>
+                    <textarea id="volunteerMessage" rows="4" class="w-full border border-gray-300 rounded-lg px-4 py-3 focus:ring-2 focus:ring-pink-500 focus:border-transparent transition-all duration-300" placeholder="Share your motivation and any relevant experience..."></textarea>
+                </div>
+                <div class="form-field">
+                    <button type="submit" class="modal-btn w-full bg-pink-600 text-white py-3 px-6 rounded-lg hover:bg-pink-700 transition font-semibold">
+                        Submit Application
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Help Request Confirmation Modal -->
+    <div id="helpConfirmationModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 modal-overlay">
+        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 modal-content text-center">
+            <div class="mb-6">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                    <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-800 mb-2">Help Request Sent!</h3>
+                <p class="text-gray-600 mb-4">
+                    Your emergency request has been received and is being processed immediately.
+                </p>
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                    <div class="flex items-start">
+                        <svg class="w-5 h-5 text-red-600 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                        </svg>
+                        <div class="text-left">
+                            <h4 class="text-red-800 font-semibold mb-1">Emergency Protocol Activated</h4>
+                            <p class="text-red-700 text-sm">
+                                Local authorities have been notified. If you're in immediate danger, call emergency services at 911.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button onclick="closeModal()" class="bg-pink-600 text-white px-8 py-3 rounded-lg hover:bg-pink-700 transition font-semibold">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-pink-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold mb-4">FemiNova</h3>
+                    <p class="text-pink-200">
+                        Empowering women's voices and creating positive change for a better tomorrow.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="text-pink-200 hover:text-white transition">About Us</a></li>
+                        <li><a href="campaigns.html" class="text-pink-200 hover:text-white transition">Campaigns</a></li>
+                        <li><a href="#team" class="text-pink-200 hover:text-white transition">Our Team</a></li>
+                        <li><a href="#contact" class="text-pink-200 hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xl font-semibold mb-4">Contact Info</h4>
+                    <p class="text-pink-200 mb-2">Email: Group_5@feminova.org</p>
+                    <p class="text-pink-200">Phone: 0912 345 6789</p>
+                </div>
+            </div>
+            <div class="border-t border-pink-700 mt-8 pt-8 text-center">
+                <p class="text-pink-200">&copy; 2025 FemiNova. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
