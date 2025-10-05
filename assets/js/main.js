@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initNavbarAnimation();
     initDynamicCounter();
     initHorizontalScroll();
+    createSearchModal(); // Initialize search modal
 });
 
 // Loading screen management
@@ -318,29 +319,436 @@ function initNavbarAnimation() {
 }
 
 // Search functionality
+// Comprehensive search index for all website content
+const searchIndex = [
+    // Homepage content
+    {
+        title: "FemiNova - Home",
+        content: "FemiNova empowering women's voices against gender-based violence karahasan domestic abuse violence against women support help resources Philippines",
+        url: "index.html",
+        section: "home",
+        type: "page"
+    },
+    {
+        title: "About FemiNova",
+        content: "About us mission vision FemiNova organization dedicated to empowering women survivors of gender-based violence karahasan domestic violence abuse support advocacy Philippines",
+        url: "index.html#about",
+        section: "about",
+        type: "section"
+    },
+    {
+        title: "Team Members",
+        content: "Team members staff volunteers FemiNova organization leaders advocates for women's rights gender equality violence prevention karahasan support",
+        url: "index.html#team",
+        section: "team",
+        type: "section"
+    },
+    {
+        title: "Mga Adhilain - Campaigns",
+        content: "Campaigns awareness education gender-based violence karahasan domestic abuse prevention advocacy Philippines women's rights empowerment",
+        url: "campaigns.html",
+        section: "campaigns",
+        type: "page"
+    },
+    {
+        title: "Ano nga ba ang karahasan?",
+        content: "What is violence karahasan gender-based violence domestic violence abuse types forms physical emotional psychological sexual violence against women Philippines",
+        url: "campaigns.html#campaign1",
+        section: "campaign1",
+        type: "campaign"
+    },
+    {
+        title: "Know your rights",
+        content: "Legal rights protection Republic Act 9262 anti-violence against women law legal protection domestic violence abuse rights Philippines justice legal aid",
+        url: "campaigns.html#campaign2",
+        section: "campaign2",
+        type: "campaign"
+    },
+    {
+        title: "Myths vs Facts",
+        content: "Myths facts misconceptions gender-based violence karahasan domestic abuse stereotypes false beliefs education awareness Philippines women's rights",
+        url: "campaigns.html#campaign3",
+        section: "campaign3",
+        type: "campaign"
+    },
+    {
+        title: "Pagsusulit",
+        content: "Quiz test assessment knowledge gender-based violence karahasan domestic abuse learning education awareness Philippines women's rights empowerment",
+        url: "campaigns.html#campaign4",
+        section: "campaign4",
+        type: "campaign"
+    },
+    {
+        title: "Kwentong Survivor",
+        content: "Survivor stories testimonials courage resilience hope inspiration gender-based violence karahasan domestic abuse recovery healing Philippines",
+        url: "campaigns.html#campaign5",
+        section: "campaign5",
+        type: "campaign"
+    },
+    {
+        title: "Get free professionalation",
+        content: "Professional help counseling support services crisis intervention domestic violence abuse survivors help hotline counseling therapy Philippines",
+        url: "campaigns.html#campaign6",
+        section: "campaign6",
+        type: "campaign"
+    },
+    {
+        title: "Paano magvolunteer, donate, advocate",
+        content: "Volunteer donate advocate support FemiNova organization contribute help survivors gender-based violence karahasan domestic abuse prevention Philippines",
+        url: "campaigns.html#campaign7",
+        section: "campaign7",
+        type: "campaign"
+    },
+    {
+        title: "Emergency Help",
+        content: "Emergency crisis help immediate assistance danger violence abuse domestic violence karahasan urgent help support Philippines emergency services",
+        url: "index.html#help",
+        section: "help",
+        type: "section"
+    },
+    {
+        title: "Contact Us",
+        content: "Contact information reach out FemiNova organization support questions inquiries gender-based violence karahasan domestic abuse help Philippines",
+        url: "index.html#contact",
+        section: "contact",
+        type: "section"
+    },
+    {
+        title: "Daily Affirmation",
+        content: "Daily affirmation positive messages empowerment strength courage women survivors gender-based violence karahasan domestic abuse healing recovery",
+        url: "index.html#home",
+        section: "affirmation",
+        type: "feature"
+    }
+];
+
+// Search results modal
+function createSearchModal() {
+    const modal = document.createElement('div');
+    modal.id = 'searchModal';
+    modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden animate-fade-in';
+    modal.innerHTML = `
+        <div class="bg-white rounded-3xl shadow-2xl max-w-3xl w-full mx-4 max-h-[85vh] overflow-hidden transform transition-all duration-300 scale-95 animate-scale-in">
+            <!-- Elegant Header with Gradient -->
+            <div class="relative bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 p-8 text-white">
+                <div class="absolute inset-0 bg-gradient-to-r from-pink-500/90 via-pink-600/90 to-purple-600/90 backdrop-blur-sm"></div>
+                <div class="relative flex justify-between items-center">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Search Results</h2>
+                            <p class="text-pink-100 text-sm">Discover what you're looking for</p>
+                        </div>
+                    </div>
+                    <button onclick="closeSearchModal()" class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center hover:bg-white/30 transition-all duration-200 backdrop-blur-sm group">
+                        <svg class="w-5 h-5 group-hover:rotate-90 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Container with Elegant Styling -->
+            <div id="searchResults" class="p-8 overflow-y-auto max-h-96 bg-gradient-to-b from-gray-50/50 to-white">
+                <!-- Results will be inserted here -->
+            </div>
+        </div>
+    `;
+
+    // Add custom CSS animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes scale-in {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-scale-in {
+            animation: scale-in 0.3s ease-out;
+        }
+        .animate-fade-in {
+            animation: fade-in 0.3s ease-out;
+        }
+    `;
+    document.head.appendChild(style);
+
+    document.body.appendChild(modal);
+    return modal;
+}
+
+function showSearchModal() {
+    let modal = document.getElementById('searchModal');
+    if (!modal) {
+        modal = createSearchModal();
+    }
+    modal.classList.remove('hidden');
+}
+
+function closeSearchModal() {
+    const modal = document.getElementById('searchModal');
+    if (modal) {
+        // Add closing animation
+        const modalContent = modal.querySelector('div');
+        modalContent.classList.add('scale-95', 'opacity-0');
+        modal.classList.add('opacity-0');
+
+        setTimeout(() => {
+            modal.classList.add('hidden');
+            modal.classList.remove('opacity-0');
+            // Reset modal content for next open
+            modalContent.classList.remove('scale-95', 'opacity-0');
+        }, 300);
+    }
+}
+
+// Search algorithm with relevance scoring
 function performSearch() {
     const searchInput = document.getElementById('searchInput');
     const query = searchInput.value.trim().toLowerCase();
-    
+
     if (!query) {
         alert('Please enter a search term');
         return;
     }
-    
-    // Simple keyword-based routing
-    if (query.includes('campaign') || query.includes('karahasan') || query.includes('kwentong') || query.includes('testimonyal')) {
-        window.location.href = 'campaigns.html';
-    } else if (query.includes('team') || query.includes('member') || query.includes('staff')) {
-        window.location.href = 'index.html#team';
-    } else if (query.includes('about') || query.includes('mission') || query.includes('vision')) {
-        window.location.href = 'index.html#about';
-    } else if (query.includes('contact') || query.includes('email') || query.includes('phone')) {
-        window.location.href = 'index.html#contact';
+
+    // Perform comprehensive search
+    const results = searchContent(query);
+
+    if (results.length === 0) {
+        showSearchModal();
+        document.getElementById('searchResults').innerHTML = `
+            <div class="text-center py-8">
+                <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+                <h3 class="text-lg font-medium text-gray-600 mb-2">No results found</h3>
+                <p class="text-gray-500">Try searching for: campaigns, team, about, contact, violence, help, rights</p>
+            </div>
+        `;
     } else {
-        alert(`Searching for: "${query}"\n\nTry searching for: campaigns, team, about, or contact`);
+        displaySearchResults(results, query);
     }
-    
+
     searchInput.value = '';
+}
+
+function searchContent(query) {
+    const results = [];
+    const queryWords = query.split(' ').filter(word => word.length > 0);
+
+    searchIndex.forEach(item => {
+        let relevanceScore = 0;
+        const content = item.content.toLowerCase();
+        const title = item.title.toLowerCase();
+
+        // Check for exact phrase match (highest relevance)
+        if (content.includes(query)) {
+            relevanceScore += 100;
+        }
+        if (title.includes(query)) {
+            relevanceScore += 50;
+        }
+
+        // Check for individual word matches
+        queryWords.forEach(word => {
+            if (word.length < 2) return; // Skip very short words
+
+            // Title matches are more important
+            const titleMatches = (title.match(new RegExp(word, 'g')) || []).length;
+            relevanceScore += titleMatches * 20;
+
+            // Content matches
+            const contentMatches = (content.match(new RegExp(word, 'g')) || []).length;
+            relevanceScore += contentMatches * 10;
+
+            // Bonus for word at start of title
+            if (title.startsWith(word)) {
+                relevanceScore += 15;
+            }
+        });
+
+        if (relevanceScore > 0) {
+            results.push({
+                ...item,
+                relevanceScore,
+                matchedWords: queryWords.filter(word =>
+                    content.includes(word) || title.includes(word)
+                )
+            });
+        }
+    });
+
+    // Sort by relevance score (highest first)
+    return results.sort((a, b) => b.relevanceScore - a.relevanceScore);
+}
+
+function displaySearchResults(results, query) {
+    showSearchModal();
+
+    const resultsContainer = document.getElementById('searchResults');
+    const resultsHtml = results.map((result, index) => {
+        const highlightedTitle = highlightMatches(result.title, query);
+        const snippet = createSnippet(result.content, query);
+
+        let typeIcon = '';
+        let typeColor = '';
+        let gradientBg = '';
+        let iconBg = '';
+
+        switch (result.type) {
+            case 'page':
+                typeIcon = '📄';
+                typeColor = 'bg-blue-100 text-blue-800 border-blue-200';
+                gradientBg = 'from-blue-50 to-blue-100/50';
+                iconBg = 'bg-blue-500';
+                break;
+            case 'section':
+                typeIcon = '📋';
+                typeColor = 'bg-green-100 text-green-800 border-green-200';
+                gradientBg = 'from-green-50 to-green-100/50';
+                iconBg = 'bg-green-500';
+                break;
+            case 'campaign':
+                typeIcon = '🎯';
+                typeColor = 'bg-purple-100 text-purple-800 border-purple-200';
+                gradientBg = 'from-purple-50 to-purple-100/50';
+                iconBg = 'bg-purple-500';
+                break;
+            case 'feature':
+                typeIcon = '⭐';
+                typeColor = 'bg-yellow-100 text-yellow-800 border-yellow-200';
+                gradientBg = 'from-yellow-50 to-yellow-100/50';
+                iconBg = 'bg-yellow-500';
+                break;
+            default:
+                typeIcon = '📄';
+                typeColor = 'bg-gray-100 text-gray-800 border-gray-200';
+                gradientBg = 'from-gray-50 to-gray-100/50';
+                iconBg = 'bg-gray-500';
+        }
+
+        return `
+            <div class="mb-4 animate-fade-in" style="animation-delay: ${index * 0.1}s; animation-fill-mode: both;">
+                <a href="${result.url}" class="block group" onclick="closeSearchModal()">
+                    <div class="bg-gradient-to-r ${gradientBg} rounded-2xl p-6 border border-white/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-[1.02] backdrop-blur-sm">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="flex items-center space-x-4 flex-1">
+                                <div class="w-12 h-12 ${iconBg} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                    <span class="text-white text-lg">${typeIcon}</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-gray-800 mb-1 group-hover:text-pink-700 transition-colors duration-300">${highlightedTitle}</h3>
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${typeColor} border shadow-sm">
+                                        ${result.type.charAt(0).toUpperCase() + result.type.slice(1)}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex-shrink-0 ml-4">
+                                <svg class="w-5 h-5 text-gray-400 group-hover:text-pink-500 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <p class="text-gray-700 text-sm leading-relaxed mb-4 pl-16">${snippet}</p>
+
+                        <div class="flex items-center justify-between pl-16">
+                            <div class="flex items-center text-xs text-gray-500 bg-white/60 rounded-lg px-3 py-1">
+                                <svg class="w-3 h-3 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                                </svg>
+                                ${result.url}
+                            </div>
+                            <div class="text-xs text-pink-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                Click to visit →
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        `;
+    }).join('');
+
+    const noResultsHtml = `
+        <div class="text-center py-12 animate-fade-in">
+            <div class="w-20 h-20 bg-gradient-to-br from-pink-100 to-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <svg class="w-10 h-10 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-800 mb-2">No results found</h3>
+            <p class="text-gray-600 mb-6 max-w-md mx-auto">We couldn't find anything matching your search. Try different keywords or check your spelling.</p>
+            <div class="bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl p-4 border border-pink-100">
+                <p class="text-sm text-gray-700 font-medium mb-2">Popular searches:</p>
+                <div class="flex flex-wrap gap-2 justify-center">
+                    <span class="px-3 py-1 bg-white rounded-full text-xs text-pink-700 border border-pink-200 hover:bg-pink-50 cursor-pointer transition-colors">violence</span>
+                    <span class="px-3 py-1 bg-white rounded-full text-xs text-pink-700 border border-pink-200 hover:bg-pink-50 cursor-pointer transition-colors">rights</span>
+                    <span class="px-3 py-1 bg-white rounded-full text-xs text-pink-700 border border-pink-200 hover:bg-pink-50 cursor-pointer transition-colors">help</span>
+                    <span class="px-3 py-1 bg-white rounded-full text-xs text-pink-700 border border-pink-200 hover:bg-pink-50 cursor-pointer transition-colors">campaigns</span>
+                    <span class="px-3 py-1 bg-white rounded-full text-xs text-pink-700 border border-pink-200 hover:bg-pink-50 cursor-pointer transition-colors">support</span>
+                </div>
+            </div>
+        </div>
+    `;
+
+    resultsContainer.innerHTML = results.length === 0 ? noResultsHtml : `
+        <div class="mb-6 text-center animate-fade-in">
+            <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm border border-white/50">
+                <svg class="w-4 h-4 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="text-sm font-semibold text-gray-700">
+                    Found ${results.length} result${results.length !== 1 ? 's' : ''} for "<span class="text-pink-600">${query}</span>"
+                </span>
+            </div>
+        </div>
+        ${resultsHtml}
+    `;
+}
+
+function highlightMatches(text, query) {
+    const words = query.split(' ').filter(word => word.length > 0);
+    let highlightedText = text;
+
+    words.forEach(word => {
+        const regex = new RegExp(`(${word})`, 'gi');
+        highlightedText = highlightedText.replace(regex, '<mark class="bg-gradient-to-r from-pink-200 to-purple-200 text-pink-900 px-2 py-0.5 rounded-md font-semibold shadow-sm">$1</mark>');
+    });
+
+    return highlightedText;
+}
+
+function createSnippet(content, query) {
+    const words = query.split(' ').filter(word => word.length > 0);
+    const contentLower = content.toLowerCase();
+
+    // Find the first occurrence of any query word
+    let bestIndex = -1;
+    words.forEach(word => {
+        const index = contentLower.indexOf(word.toLowerCase());
+        if (index !== -1 && (bestIndex === -1 || index < bestIndex)) {
+            bestIndex = index;
+        }
+    });
+
+    if (bestIndex === -1) return content.substring(0, 150) + '...';
+
+    // Extract snippet around the match
+    const start = Math.max(0, bestIndex - 75);
+    const end = Math.min(content.length, bestIndex + 75);
+    let snippet = content.substring(start, end);
+
+    if (start > 0) snippet = '...' + snippet;
+    if (end < content.length) snippet = snippet + '...';
+
+    return highlightMatches(snippet, query);
 }
 
 // Allow search on Enter key
@@ -499,6 +907,39 @@ function handleDonation() {
 
 function handleVolunteer() {
     showVolunteerModal();
+}
+
+function handleShare() {
+    const shareText = "Join FemiNova in the fight against gender-based violence! Together we can create positive change for women everywhere. #FemiNova #EndGBV";
+    const shareUrl = window.location.href;
+    
+    if (navigator.share) {
+        // Use native Web Share API if available
+        navigator.share({
+            title: 'FemiNova - Empowering Women Against Violence',
+            text: shareText,
+            url: shareUrl
+        }).catch(console.error);
+    } else {
+        // Fallback: copy to clipboard or open share dialog
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(`${shareText} ${shareUrl}`).then(() => {
+                alert('Share link copied to clipboard! Share it on your favorite social media platform.');
+            }).catch(() => {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = `${shareText} ${shareUrl}`;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                alert('Share link copied to clipboard! Share it on your favorite social media platform.');
+            });
+        } else {
+            // Basic fallback
+            alert('Share this message: ' + shareText + ' ' + shareUrl);
+        }
+    }
 }
 
 // Modal functions

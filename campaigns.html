@@ -210,41 +210,112 @@
                 <!-- Ano nga ba ang karahasan? -->
                 <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign1')">
                     <div class="absolute -inset-1 bg-gradient-to-r from-pink-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                    <div class="relative bg-white rounded-3xl shadow-2xl p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-pink-50">
-                        <div class="flex items-start justify-between mb-8">
-                            <div class="flex items-center">
-                                <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
-                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-pink-50">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 sm:mb-8">
+                            <div class="flex items-center mb-4 sm:mb-0">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl sm:rounded-2xl flex items-center justify-center mr-4 sm:mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                                    <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-4xl font-bold text-gray-800 mb-2 group-hover:text-pink-600 transition-colors duration-300">Ano nga ba ang karahasan?</h3>
-                                    <div class="w-16 h-1 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full"></div>
+                                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 group-hover:text-pink-600 transition-colors duration-300">Ano nga ba ang karahasan?</h3>
+                                    <div class="w-12 h-1 sm:w-14 md:w-16 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full"></div>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-3">
-                                <span class="text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
+                            <div class="flex items-center space-x-3 sm:justify-end">
+                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
                                 <div class="transition-transform duration-300" id="campaign1-icon">
-                                    <svg class="w-6 h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl p-6 border border-pink-100 mb-4">
-                            <p class="text-lg text-gray-700 leading-relaxed">
+                        <div class="bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-pink-100 mb-4">
+                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
                                 Understanding the different forms of violence and their impact on women's lives.
                             </p>
                         </div>
                         
                         <!-- Expandable Content -->
                         <div id="campaign1" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
-                            <div class="pt-6 border-t border-pink-100">
-                                <div class="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl p-8 border border-pink-100">
-                                    <p class="text-lg text-gray-700 leading-relaxed">
-                                        •Ang karahasan ay madalas na nakikita sa tatlong anyo: pisikal, emosyonal, at seksuwal. Ang pisikal ay tumutukoy sa pananakit ng katawan, ang emosyonal ay sa pananakot at panlalait na sumisira sa tiwala sa sarili, at ang seksuwal ay sa sapilitang paggamit ng katawan nang walang pahintulot. Kung iguguhit ito, maaaring ipakita ang biktimang nakatakip ng mukha, isang taong umiiyak sa dilim, at isang babae na may pulang "STOP" sign bilang simbolo ng pagtutol.
-                                    </p>
+                            <div class="pt-4 sm:pt-6 border-t border-pink-100">
+                                <div class="bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-pink-100">
+                                    <div class="space-y-4">
+                                        <div class="bg-white rounded-lg p-4 border-l-4 border-pink-500">
+                                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                                                • Ito ay anyo ng pang-aabuso ng kapangyarihan upang kontrolin, takutin, o saktan ang iba.
+                                            </p>
+                                        </div>
+                                        
+                                        <div class="space-y-4">
+                                            <div class="flex flex-col sm:flex-row sm:items-start gap-4 p-4 bg-white/50 rounded-lg border border-pink-100">
+                                                <div class="flex-1">
+                                                    <div class="flex items-center gap-3 mb-2">
+                                                        <span class="flex-shrink-0 w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center text-sm font-bold">1</span>
+                                                        <h4 class="font-semibold text-gray-800">Pisikal na Karahasan</h4>
+                                                    </div>
+                                                    <p class="text-gray-700 text-sm sm:text-base leading-relaxed">pananakit ng katawan gaya ng pananampal, pananakit gamit ang kamay o bagay, at pananakit na nag-iiwan ng sugat.</p>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <img src="img/pisikal na karahasan.png" alt="Pisikal na Karahasan" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg shadow-sm border border-pink-200">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="flex flex-col sm:flex-row sm:items-start gap-4 p-4 bg-white/50 rounded-lg border border-pink-100">
+                                                <div class="flex-1">
+                                                    <div class="flex items-center gap-3 mb-2">
+                                                        <span class="flex-shrink-0 w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center text-sm font-bold">2</span>
+                                                        <h4 class="font-semibold text-gray-800">Emosyonal o Sikolohikal na Karahasan</h4>
+                                                    </div>
+                                                    <p class="text-gray-700 text-sm sm:text-base leading-relaxed">pananakot, pang-iinsulto, pagbabanta, o anumang salita at kilos na nakasisira ng tiwala sa sarili.</p>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <img src="img/emosyonal na karaahasan.png" alt="Emosyonal na Karahasan" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg shadow-sm border border-pink-200">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="flex flex-col sm:flex-row sm:items-start gap-4 p-4 bg-white/50 rounded-lg border border-pink-100">
+                                                <div class="flex-1">
+                                                    <div class="flex items-center gap-3 mb-2">
+                                                        <span class="flex-shrink-0 w-8 h-8 bg-pink-500 text-white rounded-full flex items-center justify-center text-sm font-bold">3</span>
+                                                        <h4 class="font-semibold text-gray-800">Seksuwal na Karahasan</h4>
+                                                    </div>
+                                                    <p class="text-gray-700 text-sm sm:text-base leading-relaxed">sapilitang pakikipagtalik, hindi kanais-nais na paghipo, o paggamit ng katawan ng isang tao nang walang pahintulot.</p>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <img src="img/seksuwal na karahasan.png" alt="Seksuwal na Karahasan" class="w-20 h-20 sm:w-24 sm:h-24 object-cover rounded-lg shadow-sm border border-pink-200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                                            <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                                                <div class="flex-1">
+                                                    <p class="text-blue-800 text-sm sm:text-base">
+                                                        • Ayon sa Republic Act 9262, may karapatan ang lahat—lalo na ang kababaihan at kabataan—na maprotektahan laban sa anumang uri ng pang-aabuso.
+                                                    </p>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <img src="img/R.A 9262.png" alt="Republic Act 9262" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-lg shadow-sm border border-blue-300">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="bg-green-50 border border-green-200 rounded-lg p-4">
+                                            <p class="text-green-800 text-sm sm:text-base">
+                                                • Ang pag-unawa sa karahasan ay unang hakbang upang mapanatili ang respeto, kaligtasan, at dignidad ng bawat isa.
+                                            </p>
+                                        </div>
+                                        
+                                        <div class="mt-6 flex justify-center">
+                                            <div class="relative">
+                                                <div class="absolute -inset-2 bg-gradient-to-r from-pink-400 to-purple-400 rounded-xl blur opacity-30"></div>
+                                                <img src="img/ano nga ba ang karahasan.png" alt="Ano nga ba ang karahasan" class="relative w-64 h-40 sm:w-80 sm:h-48 object-cover rounded-xl shadow-lg border-2 border-white">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -254,41 +325,51 @@
                 <!-- Know your rights -->
                 <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign2')">
                     <div class="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                    <div class="relative bg-white rounded-3xl shadow-2xl p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-blue-50">
-                        <div class="flex items-start justify-between mb-8">
-                            <div class="flex items-center">
-                                <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
-                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-blue-50">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 sm:mb-8">
+                            <div class="flex items-center mb-4 sm:mb-0">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl sm:rounded-2xl flex items-center justify-center mr-4 sm:mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                                    <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-4xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">Know your rights</h3>
-                                    <div class="w-16 h-1 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"></div>
+                                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors duration-300">Know your rights</h3>
+                                    <div class="w-12 h-1 sm:w-14 md:w-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full"></div>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-3">
-                                <span class="text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
+                            <div class="flex items-center space-x-3 sm:justify-end">
+                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
                                 <div class="transition-transform duration-300" id="campaign2-icon">
-                                    <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100 mb-4">
-                            <p class="text-lg text-gray-700 leading-relaxed">
+                        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-blue-100 mb-4">
+                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
                                 Learn about your legal rights and protections under Philippine law against gender-based violence.
                             </p>
                         </div>
                         
                         <!-- Expandable Content -->
                         <div id="campaign2" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
-                            <div class="pt-6 border-t border-blue-100">
-                                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-100">
-                                    <p class="text-lg text-gray-700 leading-relaxed">
-                                        •Ang mga kababaihan sa Pilipinas ay may karapatan na maprotektahan laban sa anumang uri ng karahasan—pisikal, sekswal, emosyonal, o ekonomiko—ayon sa Republic Act 9262. Maaari silang magsampa ng kaso at humingi ng Protection Order mula sa korte upang maging ligtas. Mayroon din silang karapatan sa libreng tulong legal, medikal, at psychosocial mula sa mga ahensya ng gobyerno, bilang pagkilala sa kanilang dignidad at pantay na pagtingin sa lipunan.
-                                    </p>
+                            <div class="pt-4 sm:pt-6 border-t border-blue-100">
+                                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-blue-100">
+                                    <div class="flex flex-col lg:flex-row lg:items-center gap-6">
+                                        <div class="flex-1">
+                                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                                                •Ang mga kababaihan sa Pilipinas ay may karapatan na maprotektahan laban sa anumang uri ng karahasan—pisikal, sekswal, emosyonal, o ekonomiko—ayon sa Republic Act 9262. Maaari silang magsampa ng kaso at humingi ng Protection Order mula sa korte upang maging ligtas. Mayroon din silang karapatan sa libreng tulong legal, medikal, at psychosocial mula sa mga ahensya ng gobyerno, bilang pagkilala sa kanilang dignidad at pantay na pagtingin sa lipunan.
+                                            </p>
+                                        </div>
+                                        <div class="flex-shrink-0 flex justify-center lg:justify-end">
+                                            <div class="relative">
+                                                <div class="absolute -inset-1 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-lg blur opacity-25"></div>
+                                                <img src="img/know your rights.png" alt="Know your rights" class="relative w-48 h-32 sm:w-56 sm:h-36 object-cover rounded-lg shadow-md border border-white">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -298,41 +379,51 @@
                 <!-- Myths vs. Facts -->
                 <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign3')">
                     <div class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                    <div class="relative bg-white rounded-3xl shadow-2xl p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-purple-50">
-                        <div class="flex items-start justify-between mb-8">
-                            <div class="flex items-center">
-                                <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
-                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-purple-50">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 sm:mb-8">
+                            <div class="flex items-center mb-4 sm:mb-0">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl sm:rounded-2xl flex items-center justify-center mr-4 sm:mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                                    <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-4xl font-bold text-gray-800 mb-2 group-hover:text-purple-600 transition-colors duration-300">Myths vs. Facts</h3>
-                                    <div class="w-16 h-1 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full"></div>
+                                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 group-hover:text-purple-600 transition-colors duration-300">Myths vs. Facts</h3>
+                                    <div class="w-12 h-1 sm:w-14 md:w-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full"></div>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-3">
-                                <span class="text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
+                            <div class="flex items-center space-x-3 sm:justify-end">
+                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
                                 <div class="transition-transform duration-300" id="campaign3-icon">
-                                    <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 border border-purple-100 mb-4">
-                            <p class="text-lg text-gray-700 leading-relaxed">
+                        <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-purple-100 mb-4">
+                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
                                 Separating truth from fiction about gender-based violence and victim blaming.
                             </p>
                         </div>
                         
                         <!-- Expandable Content -->
                         <div id="campaign3" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
-                            <div class="pt-6 border-t border-purple-100">
-                                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 border border-purple-100">
-                                    <p class="text-lg text-gray-700 leading-relaxed">
-                                        •Maraming maling paniniwala o myths ang umiikot tungkol sa abuso, gaya ng paniniwalang kasalanan ng biktima o normal lang ito sa isang relasyon. Sa katotohanan (facts), ang abuso ay hindi kailanman tama at walang sinuman ang may karapatang manakit. Ang pagwawasto sa mga maling akala ay nakatutulong upang mas maintindihan ang tunay na epekto ng abuso at mas maprotektahan ang mga biktima.
-                                    </p>
+                            <div class="pt-4 sm:pt-6 border-t border-purple-100">
+                                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-purple-100">
+                                    <div class="flex flex-col lg:flex-row lg:items-center gap-6">
+                                        <div class="flex-1">
+                                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                                                •Maraming maling paniniwala o myths ang umiikot tungkol sa abuso, gaya ng paniniwalang kasalanan ng biktima o normal lang ito sa isang relasyon. Sa katotohanan (facts), ang abuso ay hindi kailanman tama at walang sinuman ang may karapatang manakit. Ang pagwawasto sa mga maling akala ay nakatutulong upang mas maintindihan ang tunay na epekto ng abuso at mas maprotektahan ang mga biktima.
+                                            </p>
+                                        </div>
+                                        <div class="flex-shrink-0 flex justify-center lg:justify-end">
+                                            <div class="relative">
+                                                <div class="absolute -inset-1 bg-gradient-to-r from-purple-400 to-pink-400 rounded-lg blur opacity-25"></div>
+                                                <img src="img/Myths vs Facts.png" alt="Myths vs Facts" class="relative w-48 h-32 sm:w-56 sm:h-36 object-cover rounded-lg shadow-md border border-white">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -342,41 +433,51 @@
                 <!-- Pagsusulit -->
                 <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign4')">
                     <div class="absolute -inset-1 bg-gradient-to-r from-green-600 to-teal-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                    <div class="relative bg-white rounded-3xl shadow-2xl p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-green-50">
-                        <div class="flex items-start justify-between mb-8">
-                            <div class="flex items-center">
-                                <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
-                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-green-50">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 sm:mb-8">
+                            <div class="flex items-center mb-4 sm:mb-0">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl sm:rounded-2xl flex items-center justify-center mr-4 sm:mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                                    <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-4xl font-bold text-gray-800 mb-2 group-hover:text-green-600 transition-colors duration-300">Pagsusulit</h3>
-                                    <div class="w-16 h-1 bg-gradient-to-r from-green-500 to-green-600 rounded-full"></div>
+                                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 group-hover:text-green-600 transition-colors duration-300">Pagsusulit</h3>
+                                    <div class="w-12 h-1 sm:w-14 md:w-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full"></div>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-3">
-                                <span class="text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
+                            <div class="flex items-center space-x-3 sm:justify-end">
+                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
                                 <div class="transition-transform duration-300" id="campaign4-icon">
-                                    <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-6 border border-green-100 mb-4">
-                            <p class="text-lg text-gray-700 leading-relaxed">
+                        <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-green-100 mb-4">
+                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
                                 Test your knowledge about gender-based violence and learn through interactive assessment.
                             </p>
                         </div>
                         
                         <!-- Expandable Content -->
                         <div id="campaign4" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
-                            <div class="pt-6 border-t border-green-100">
-                                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-2xl p-8 border border-green-100">
-                                    <p class="text-lg text-gray-700 leading-relaxed">
-                                        •Ang pagsusulit ay isang paraan upang masukat ang ating kaalaman tungkol sa karahasan at karapatan. Layunin nito na mapalawak ang ating pag-unawa at maitaguyod ang kamalayan sa isyung panlipunan.
-                                    </p>
+                            <div class="pt-4 sm:pt-6 border-t border-green-100">
+                                <div class="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-green-100">
+                                    <div class="flex flex-col lg:flex-row lg:items-center gap-6">
+                                        <div class="flex-1">
+                                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                                                •Ang pagsusulit ay isang paraan upang masukat ang ating kaalaman tungkol sa karahasan at karapatan. Layunin nito na mapalawak ang ating pag-unawa at maitaguyod ang kamalayan sa isyung panlipunan.
+                                            </p>
+                                        </div>
+                                        <div class="flex-shrink-0 flex justify-center lg:justify-end">
+                                            <div class="relative">
+                                                <div class="absolute -inset-1 bg-gradient-to-r from-green-400 to-teal-400 rounded-lg blur opacity-25"></div>
+                                                <img src="img/pagsusulit.png" alt="Pagsusulit" class="relative w-48 h-32 sm:w-56 sm:h-36 object-cover rounded-lg shadow-md border border-white">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -386,41 +487,51 @@
                 <!-- Kwentong Survivor! -->
                 <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign5')">
                     <div class="absolute -inset-1 bg-gradient-to-r from-orange-600 to-red-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                    <div class="relative bg-white rounded-3xl shadow-2xl p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-orange-50">
-                        <div class="flex items-start justify-between mb-8">
-                            <div class="flex items-center">
-                                <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
-                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-orange-50">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 sm:mb-8">
+                            <div class="flex items-center mb-4 sm:mb-0">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl sm:rounded-2xl flex items-center justify-center mr-4 sm:mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                                    <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-4xl font-bold text-gray-800 mb-2 group-hover:text-orange-600 transition-colors duration-300">Kwentong Survivor!</h3>
-                                    <div class="w-16 h-1 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full"></div>
+                                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 group-hover:text-orange-600 transition-colors duration-300">Kwentong Survivor!</h3>
+                                    <div class="w-12 h-1 sm:w-14 md:w-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full"></div>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-3">
-                                <span class="text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
+                            <div class="flex items-center space-x-3 sm:justify-end">
+                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
                                 <div class="transition-transform duration-300" id="campaign5-icon">
-                                    <svg class="w-6 h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-6 border border-orange-100 mb-4">
-                            <p class="text-lg text-gray-700 leading-relaxed">
+                        <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-orange-100 mb-4">
+                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
                                 Inspiring stories of courage, resilience, and hope from survivors who have overcome adversity.
                             </p>
                         </div>
                         
                         <!-- Expandable Content -->
                         <div id="campaign5" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
-                            <div class="pt-6 border-t border-orange-100">
-                                <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-2xl p-8 border border-orange-100">
-                                    <p class="text-lg text-gray-700 leading-relaxed">
-                                        •Ang mga kwento ng survivor ay nagpapakita ng tapang at pag-asa sa kabila ng karahasan. Ipinapakita nila na posible ang pagbabago at pagbangon sa tulong ng komunidad. Ang kanilang karanasan ay nagsisilbing inspirasyon sa iba upang lumaban at huwag sumuko.
-                                    </p>
+                            <div class="pt-4 sm:pt-6 border-t border-orange-100">
+                                <div class="bg-gradient-to-br from-orange-50 to-red-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-orange-100">
+                                    <div class="flex flex-col lg:flex-row lg:items-center gap-6">
+                                        <div class="flex-1">
+                                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                                                •Ang mga kwento ng survivor ay nagpapakita ng tapang at pag-asa sa kabila ng karahasan. Ipinapakita nila na posible ang pagbabago at pagbangon sa tulong ng komunidad. Ang kanilang karanasan ay nagsisilbing inspirasyon sa iba upang lumaban at huwag sumuko.
+                                            </p>
+                                        </div>
+                                        <div class="flex-shrink-0 flex justify-center lg:justify-end">
+                                            <div class="relative">
+                                                <div class="absolute -inset-1 bg-gradient-to-r from-orange-400 to-red-400 rounded-lg blur opacity-25"></div>
+                                                <img src="img/kwentong survivor.png" alt="Kwentong Survivor" class="relative w-48 h-32 sm:w-56 sm:h-36 object-cover rounded-lg shadow-md border border-white">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -430,45 +541,45 @@
                 <!-- Get free professionalation -->
                 <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign6')">
                     <div class="absolute -inset-1 bg-gradient-to-r from-teal-600 to-cyan-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                    <div class="relative bg-white rounded-3xl shadow-2xl p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-teal-50">
-                        <div class="flex items-start justify-between mb-8">
-                            <div class="flex items-center">
-                                <div class="w-16 h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-2xl flex items-center justify-center mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
-                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-teal-50">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 sm:mb-8">
+                            <div class="flex items-center mb-4 sm:mb-0">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-teal-500 to-teal-600 rounded-xl sm:rounded-2xl flex items-center justify-center mr-4 sm:mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                                    <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-4xl font-bold text-gray-800 mb-2 group-hover:text-teal-600 transition-colors duration-300">Get free professionalation</h3>
-                                    <div class="w-16 h-1 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full"></div>
+                                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 group-hover:text-teal-600 transition-colors duration-300">Get free professionalation</h3>
+                                    <div class="w-12 h-1 sm:w-14 md:w-16 bg-gradient-to-r from-teal-500 to-teal-600 rounded-full"></div>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-3">
-                                <span class="text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
+                            <div class="flex items-center space-x-3 sm:justify-end">
+                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
                                 <div class="transition-transform duration-300" id="campaign6-icon">
-                                    <svg class="w-6 h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl p-6 border border-teal-100 mb-4">
-                            <p class="text-lg text-gray-700 leading-relaxed">
+                        <div class="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-teal-100 mb-4">
+                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
                                 Access 24/7 crisis support, counseling, and legal assistance for survivors of gender-based violence.
                             </p>
                         </div>
                         
                         <!-- Expandable Content -->
                         <div id="campaign6" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
-                            <div class="pt-6 border-t border-teal-100">
-                                <div class="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl p-8 border border-teal-100">
-                                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                            <div class="pt-4 sm:pt-6 border-t border-teal-100">
+                                <div class="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-teal-100">
+                                    <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-6">
                                         Kung ikaw o ang isang kakilala mo ay nakararanas ng karahasan, hindi ka nag-iisa. May mga taong handang makinig, umalalay, at umagapay sa'yo.
                                     </p>
-                                    <div class="grid md:grid-cols-2 gap-6">
-                                        <div class="bg-white rounded-xl p-6 shadow-lg border border-teal-200">
-                                            <h4 class="text-xl font-semibold text-teal-700 mb-4">Hotline Numbers</h4>
-                                            <ul class="space-y-3 text-gray-700">
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg border border-teal-200">
+                                            <h4 class="text-lg sm:text-xl font-semibold text-teal-700 mb-4">Hotline Numbers</h4>
+                                            <ul class="space-y-3 text-gray-700 text-sm sm:text-base">
                                                 <li class="flex items-center">
                                                     <span class="w-2 h-2 bg-teal-500 rounded-full mr-3"></span>
                                                     Philippine Commission on Women (PCW): 8735-1654
@@ -487,13 +598,13 @@
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div class="bg-white rounded-xl p-6 shadow-lg border border-teal-200">
-                                            <h4 class="text-xl font-semibold text-teal-700 mb-4">Free Counseling and Support</h4>
-                                            <p class="text-gray-700">
+                                        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg border border-teal-200">
+                                            <h4 class="text-lg sm:text-xl font-semibold text-teal-700 mb-4">Free Counseling and Support</h4>
+                                            <p class="text-gray-700 text-sm sm:text-base">
                                                 Libreng psychological first aid at counseling mula sa mga trained social workers at psychologists.
                                             </p>
-                                            <div class="mt-4 flex items-center text-teal-600 font-medium">
-                                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <div class="mt-4 flex items-center text-teal-600 font-medium text-sm sm:text-base">
+                                                <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                                                 </svg>
                                                 24/7 Support Available
@@ -508,109 +619,69 @@
 
                 <!-- paano magvolunteer, donate, advocate -->
                 <div class="group relative campaign-card cursor-pointer" onclick="toggleCampaignCard('campaign7')">
-                    <div class="absolute -inset-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-                    <div class="relative bg-white rounded-3xl shadow-2xl p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-indigo-50">
-                        <div class="flex items-start justify-between mb-8">
-                            <div class="flex items-center">
-                                <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-2xl flex items-center justify-center mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
-                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                    <div class="absolute -inset-1 bg-gradient-to-r from-pink-600 to-rose-600 rounded-3xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative bg-white rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 md:p-10 reveal hover:shadow-3xl transition-all duration-500 transform hover:-translate-y-2 border border-pink-50">
+                        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 sm:mb-8">
+                            <div class="flex items-center mb-4 sm:mb-0">
+                                <div class="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl sm:rounded-2xl flex items-center justify-center mr-4 sm:mr-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                                    <svg class="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
                                     </svg>
                                 </div>
                                 <div>
-                                    <h3 class="text-4xl font-bold text-gray-800 mb-2 group-hover:text-indigo-600 transition-colors duration-300">paano magvolunteer, donate, advocate</h3>
-                                    <div class="w-16 h-1 bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-full"></div>
+                                    <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-800 mb-2 group-hover:text-pink-600 transition-colors duration-300">paano mag Volunteer, Donate at Advocate</h3>
+                                    <div class="w-12 h-1 sm:w-14 md:w-16 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full"></div>
                                 </div>
                             </div>
-                            <div class="flex items-center space-x-3">
-                                <span class="text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
+                            <div class="flex items-center space-x-3 sm:justify-end">
+                                <span class="text-xs sm:text-sm text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300">Click to expand</span>
                                 <div class="transition-transform duration-300" id="campaign7-icon">
-                                    <svg class="w-6 h-6 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-pink-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                                     </svg>
                                 </div>
                             </div>
                         </div>
-                        <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-6 border border-indigo-100 mb-4">
-                            <p class="text-lg text-gray-700 leading-relaxed">
-                                Discover meaningful ways to support survivors and contribute to ending gender-based violence.
+                        <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-pink-100 mb-4">
+                            <p class="text-base sm:text-lg text-gray-700 leading-relaxed">
+                                Learn how to get involved in the fight against gender-based violence through volunteering, donations, and advocacy.
                             </p>
                         </div>
                         
                         <!-- Expandable Content -->
                         <div id="campaign7" class="campaign-content overflow-hidden transition-all duration-500 ease-in-out max-h-0">
-                            <div class="pt-6 border-t border-indigo-100">
-                                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8 border border-indigo-100">
-                                    <div class="grid md:grid-cols-3 gap-8">
-                                        <div class="bg-white rounded-xl p-6 shadow-lg border border-indigo-200 hover:shadow-xl transition-all duration-300">
-                                            <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                                                </svg>
-                                            </div>
-                                            <h4 class="text-xl font-semibold text-indigo-700 mb-4 text-center">Mag-Volunteer</h4>
-                                            <ul class="space-y-2 text-gray-700 text-sm">
-                                                <li class="flex items-start">
-                                                    <span class="w-1.5 h-1.5 bg-indigo-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                                                    Sumali sa mga community outreach at seminars tungkol sa women's rights
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <span class="w-1.5 h-1.5 bg-indigo-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                                                    Tumulong bilang peer supporter sa mga awareness campaigns
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <span class="w-1.5 h-1.5 bg-indigo-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                                                    Gumamit ng skills mo (hal. sa design, writing, social media, or event organizing) para palawakin ang adbokasiya
-                                                </li>
-                                            </ul>
+                            <div class="pt-4 sm:pt-6 border-t border-pink-100">
+                                <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-pink-100">
+                                    <p class="text-base sm:text-lg text-gray-700 leading-relaxed mb-6">
+                                        Ang paglaban sa karahasan ay hindi lang tungkulin ng gobyerno. Bilang indibidwal, maaari kang maging bahagi ng solusyon.
+                                    </p>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                                        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg border border-pink-200">
+                                            <h4 class="text-lg sm:text-xl font-semibold text-pink-700 mb-4">Volunteer</h4>
+                                            <p class="text-gray-700 text-sm sm:text-base mb-4">
+                                                Sumali sa aming volunteer program at tulungan ang mga survivors sa kanilang pagbangon.
+                                            </p>
+                                            <button onclick="handleVolunteer()" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                                                Volunteer Now
+                                            </button>
                                         </div>
-
-                                        <div class="bg-white rounded-xl p-6 shadow-lg border border-indigo-200 hover:shadow-xl transition-all duration-300">
-                                            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1"/>
-                                                </svg>
-                                            </div>
-                                            <h4 class="text-xl font-semibold text-indigo-700 mb-4 text-center">Mag-Donate</h4>
-                                            <p class="text-gray-700 text-sm mb-3 text-center">Kahit maliit, malaking tulong! Ang iyong donasyon ay:</p>
-                                            <ul class="space-y-2 text-gray-700 text-sm">
-                                                <li class="flex items-start">
-                                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                                                    Nagbibigay ng libreng counseling at legal aid sa mga survivors
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                                                    Nagpapalakas sa mga shelter at safe spaces para sa mga kababaihan at bata
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                                                    Sumusuporta sa production ng learning materials at awareness events
-                                                </li>
-                                            </ul>
+                                        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg border border-pink-200">
+                                            <h4 class="text-lg sm:text-xl font-semibold text-pink-700 mb-4">Donate</h4>
+                                            <p class="text-gray-700 text-sm sm:text-base mb-4">
+                                                Ang iyong donasyon ay tutulong sa aming mga programa at serbisyo para sa mga survivors.
+                                            </p>
+                                            <button onclick="handleDonation()" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                                                Donate Now
+                                            </button>
                                         </div>
-
-                                        <div class="bg-white rounded-xl p-6 shadow-lg border border-indigo-200 hover:shadow-xl transition-all duration-300">
-                                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 mx-auto">
-                                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"/>
-                                                </svg>
-                                            </div>
-                                            <h4 class="text-xl font-semibold text-indigo-700 mb-4 text-center">Maging Advocate</h4>
-                                            <p class="text-gray-700 text-sm mb-3 text-center">Hindi lang pera o oras ang kailangan, ang boses mo ay mahalaga.</p>
-                                            <ul class="space-y-2 text-gray-700 text-sm">
-                                                <li class="flex items-start">
-                                                    <span class="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                                                    I-share ang campaign sa social media
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <span class="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                                                    Gumawa ng art, blogs, o videos para magbigay awareness
-                                                </li>
-                                                <li class="flex items-start">
-                                                    <span class="w-1.5 h-1.5 bg-purple-500 rounded-full mr-2 mt-2 flex-shrink-0"></span>
-                                                    Makipag-usap sa pamilya at kaibigan tungkol sa women's rights at respeto sa kababaihan
-                                                </li>
-                                            </ul>
+                                        <div class="bg-white rounded-xl p-4 sm:p-6 shadow-lg border border-pink-200 sm:col-span-2 lg:col-span-1">
+                                            <h4 class="text-lg sm:text-xl font-semibold text-pink-700 mb-4">Advocate</h4>
+                                            <p class="text-gray-700 text-sm sm:text-base mb-4">
+                                                Gamitin ang iyong boses para sa pagbabago. Ibahagi ang aming mensahe sa social media.
+                                            </p>
+                                            <button onclick="handleShare()" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white font-semibold py-2 sm:py-3 px-4 sm:px-6 rounded-lg hover:from-pink-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                                                Share Now
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
